@@ -1,0 +1,409 @@
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    width: 100%;
+    min-height: 90px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 40px;
+
+    background-color: transparent;
+
+    box-sizing: border-box;
+
+    box-shadow: none;
+}
+
+
+/* ========================================
+   LOGO
+======================================== */
+
+.header__logo {
+    display: block;
+
+    width: 200px;
+    height: auto;
+    margin-left: 30px;
+    object-fit: contain;
+
+    flex-shrink: 0;
+
+    cursor: pointer;
+}
+
+
+/* ========================================
+   NAV
+======================================== */
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: auto;
+}
+
+
+.nav__list {
+    display: flex;
+    align-items: center;
+
+    gap: 30px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/* ========================================
+   LINKS
+======================================== */
+
+.nav__link {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    height: 90px;
+
+    padding: 0;
+
+    color: #0b2a4a;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* Hover */
+
+.nav__link:hover {
+    color: #ec1763;
+}
+
+
+/* Línea rosada */
+
+.nav__link::after {
+    content: '';
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 22px;
+
+    width: 0;
+    height: 3px;
+
+    background-color: #ec1763;
+
+    border-radius: 10px;
+
+    transform: translateX(-50%);
+
+    transition: width 0.25s ease;
+}
+
+
+.nav__link:hover::after {
+    width: 100%;
+}
+
+
+/* Página activa */
+
+.nav__link_active {
+    color: #ec1763;
+}
+
+
+.nav__link_active::after {
+    width: 100%;
+}
+
+
+/* ========================================
+   CONTENEDOR DE BOTONES
+======================================== */
+
+.header__buttons {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-left: 35px;
+
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   BOTONES GENERALES
+======================================== */
+
+.header__button {
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 22px;
+
+    border: none;
+    border-radius: 30px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+
+.header__button:hover {
+    transform: translateY(-2px);
+}
+
+
+.header__button:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   BOTÓN RESERVA
+======================================== */
+
+.header__button_reservation {
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #ff4f8b 0%,
+        #ec1763 100%
+    );
+
+    box-shadow:
+        0 6px 16px rgba(236, 23, 99, 0.22);
+}
+
+
+.header__button_reservation:hover {
+    box-shadow:
+        0 8px 22px rgba(236, 23, 99, 0.32);
+
+    filter: brightness(1.03);
+}
+
+
+/* ========================================
+   BOTÓN COTIZACIÓN
+======================================== */
+
+.header__button_cotization {
+    color: #0b2a4a;
+
+    background: linear-gradient(
+        135deg,
+        #ffd633 0%,
+        #ffc107 100%
+    );
+
+    box-shadow:
+        0 6px 16px rgba(255, 193, 7, 0.24);
+}
+
+
+.header__button_cotization:hover {
+    box-shadow:
+        0 8px 22px rgba(255, 193, 7, 0.34);
+
+    filter: brightness(1.03);
+}
+
+
+/* ========================================
+   FOCUS - ACCESIBILIDAD
+======================================== */
+
+.header__button:focus-visible,
+.nav__link:focus-visible {
+    outline: 3px solid rgba(0, 168, 232, 0.35);
+    outline-offset: 4px;
+}
+
+
+/* ========================================
+   RESPONSIVE - LAPTOP
+======================================== */
+
+@media screen and (max-width: 1250px) {
+
+    .header {
+        padding: 0 25px;
+    }
+
+    .header__logo {
+        width: 175px;
+    }
+
+    .nav__list {
+        gap: 20px;
+    }
+
+    .nav__link {
+        font-size: 14px;
+    }
+
+    .header__buttons {
+        margin-left: 25px;
+        gap: 10px;
+    }
+
+    .header__button {
+        min-height: 44px;
+
+        padding: 0 17px;
+
+        font-size: 13px;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE - TABLET
+======================================== */
+
+@media screen and (max-width: 1050px) {
+
+    .header {
+        min-height: 80px;
+
+        padding: 0 20px;
+    }
+
+    .header__logo {
+        width: 150px;
+        height: 65px;
+    }
+
+    .nav__list {
+        gap: 16px;
+    }
+
+    .nav__link {
+        height: 80px;
+
+        font-size: 13px;
+    }
+
+    .nav__link::after {
+        bottom: 18px;
+    }
+
+    .header__buttons {
+        margin-left: 20px;
+    }
+
+    .header__button {
+        padding: 0 14px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE - MÓVIL
+   Por ahora ocultamos navegación.
+   Después podemos crear menú hamburguesa.
+======================================== */
+
+@media screen and (max-width: 850px) {
+
+    .header {
+        min-height: 75px;
+
+        justify-content: space-between;
+
+        padding: 0 20px;
+    }
+
+    .header__logo {
+        width: 145px;
+        height: 60px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .header__buttons {
+        margin-left: auto;
+    }
+
+    .header__button {
+        min-height: 42px;
+
+        padding: 0 15px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE - MÓVIL PEQUEÑO
+======================================== */
+
+@media screen and (max-width: 600px) {
+
+    .header {
+        min-height: 70px;
+
+        padding: 0 15px;
+    }
+
+    .header__logo {
+        width: 125px;
+    }
+
+    .header__button_reservation {
+        display: none;
+    }
+
+    .header__button_cotization {
+        min-height: 40px;
+
+        padding: 0 14px;
+
+        font-size: 12px;
+    }
+}

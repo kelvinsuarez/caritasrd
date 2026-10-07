@@ -1,0 +1,80 @@
+@font-face {
+    font-family: "Funny";
+    src: url("../../font/Funny.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Poppins";
+    src: url("../../font/Poppins.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+body, html {
+    overflow-x: hidden; /* Evita desbordamiento horizontal */
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.root{
+    background-color: rgb(241, 222, 222);
+    background-image: url('../../images/fondo/background.png');
+    background-size: cover;
+    background-position:center 80%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    
+    margin: auto;
+    font-family: "Funny", sans-serif;
+    color:rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.root::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-color: rgba(255, 255, 255, 0.60);
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* Todo el contenido queda encima de la capa */
+
+.root > * {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .root{
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+@media screen and (max-width: 480px) { 
+    .root{
+        background-size: cover;
+        display: flex;
+        background-position: center;
+    }
+}
+

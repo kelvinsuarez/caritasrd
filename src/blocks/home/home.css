@@ -1,0 +1,1026 @@
+@font-face {
+    font-family: "Party";
+    src: url("../../font/Party.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+.home {
+    width: 100%;
+    min-height: calc(100vh - 90px);
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.home__hero {
+    position: relative;
+
+    width: 100%;
+    min-height: 560px;
+
+    display: flex;
+    align-items: stretch;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   IMAGEN HERO - LADO IZQUIERDO
+======================================== */
+
+.home__image-container {
+    position: relative;
+
+    width: 58%;
+    min-height: 560px;
+
+    align-self: stretch;
+
+    /*
+       Superpone ligeramente la imagen
+       con la zona del texto.
+    */
+    margin-right: -4%;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+
+.home__image {
+    position: absolute;
+
+    top: 5%;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+
+    /*
+       La fotografía se desvanece hacia
+       la derecha y deja aparecer el
+       background del root.
+    */
+
+    -webkit-mask-image:
+        linear-gradient(
+            to right,
+            black 0%,
+            black 65%,
+            rgba(0, 0, 0, 0.95) 72%,
+            rgba(0, 0, 0, 0.75) 80%,
+            rgba(0, 0, 0, 0.40) 90%,
+            transparent 100%
+        ),
+
+        /* DESVANECIMIENTO EN LA PARTE SUPERIOR */
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.40) 5%,
+            rgba(0, 0, 0, 0.75) 10%,
+            black 18%,
+            black 100%
+        );
+
+    -webkit-mask-composite: source-in;
+
+
+    mask-image:
+        linear-gradient(
+            to right,
+            black 0%,
+            black 65%,
+            rgba(0, 0, 0, 0.95) 72%,
+            rgba(0, 0, 0, 0.75) 80%,
+            rgba(0, 0, 0, 0.40) 90%,
+            transparent 100%
+        ),
+
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.50) 3%,
+            rgba(0, 0, 0, 0.85) 7%,
+            black 18%,
+            black 100%
+        );
+
+    mask-composite: intersect;
+}
+
+
+/* ========================================
+   CONTENIDO - LADO DERECHO
+======================================== */
+
+.home__content {
+    position: relative;
+
+    width: 44%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 45px 7% 45px 10%;
+
+    box-sizing: border-box;
+
+    z-index: 2;
+}
+
+
+/* ========================================
+   TÍTULO
+======================================== */
+
+.home__title {
+    width: 100%;
+    max-width: 560px;
+
+    margin: 0 auto;
+
+    font-family: "Party", "Poppins", sans-serif;
+
+    font-size: clamp(48px, 7vw, 78px);
+    line-height: 0.95;
+    font-weight: 400;
+    text-align: center;
+    color: #0b2a4a;
+}
+
+
+/* Pintacaritas */
+
+.home__title > span {
+    display: block;
+}
+
+
+/* Creemos */
+
+.home__title strong {
+    display: block;
+
+    margin-top: 8px;
+
+    font-weight: 400;
+
+    color: #ec1763;
+}
+
+
+/* Sonrisas */
+
+.home__title strong span {
+    display: block;
+
+    color: #00a8e8;
+}
+
+
+/* ========================================
+   DESCRIPCIÓN
+======================================== */
+
+.home__description {
+    margin: 28px 0 0;
+
+    font-family: "Party", Arial, sans-serif;
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.6;
+    font-weight: 400;
+
+    color: #0b2a4a;
+}
+
+
+/* ========================================
+   CONTENEDOR DE BOTONES
+======================================== */
+
+.home__buttons {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: 30px;
+}
+
+
+/* ========================================
+   BOTONES GENERALES
+======================================== */
+
+.home__button {
+    min-height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 25px;
+
+    border: none;
+    border-radius: 30px;
+
+    font-family: "Funny", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+
+.home__button:hover {
+    transform: translateY(-2px);
+}
+
+
+.home__button:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   BOTÓN RESERVA
+======================================== */
+
+.home__button_reservation {
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #ff4f8b 0%,
+        #ec1763 100%
+    );
+
+    box-shadow:
+        0 7px 20px rgba(236, 23, 99, 0.25);
+}
+
+
+.home__button_reservation:hover {
+    box-shadow:
+        0 9px 24px rgba(236, 23, 99, 0.34);
+
+    filter: brightness(1.03);
+}
+
+
+/* ========================================
+   BOTÓN COTIZACIÓN
+======================================== */
+
+.home__button_cotization {
+    color: #0b2a4a;
+
+    background: linear-gradient(
+        135deg,
+        #ffd633 0%,
+        #ffc107 100%
+    );
+
+    box-shadow:
+        0 7px 20px rgba(255, 193, 7, 0.25);
+}
+
+
+.home__button_cotization:hover {
+    box-shadow:
+        0 9px 24px rgba(255, 193, 7, 0.34);
+
+    filter: brightness(1.03);
+}
+
+
+/* ========================================
+   FOCUS
+======================================== */
+
+.home__button:focus-visible {
+    outline: 3px solid rgba(0, 168, 232, 0.35);
+    outline-offset: 4px;
+}
+
+
+/* ========================================
+   BENEFICIOS
+======================================== */
+
+.home__benefits {
+    position: relative;
+
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    padding: 25px 6% 30px;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.45);
+
+    z-index: 3;
+}
+
+
+/* ========================================
+   BENEFICIO INDIVIDUAL
+======================================== */
+
+.home__benefit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 10px 20px;
+
+    box-sizing: border-box;
+}
+
+
+.home__benefit:not(:last-child) {
+    border-right: 1px solid rgba(11, 42, 74, 0.08);
+}
+
+
+/* ========================================
+   ICONOS BENEFICIOS
+======================================== */
+
+.home__benefit-icon {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 55px;
+    height: 55px;
+
+    margin-bottom: 8px;
+
+    font-size: 34px;
+    line-height: 1;
+
+    cursor: default;
+    user-select: none;
+
+    transform-origin: center;
+}
+
+.home__benefit:nth-child(1):hover
+.home__benefit-icon {
+    animation: star-spin 0.7s ease-in-out;
+}
+@keyframes star-spin {
+
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.25);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+
+}
+
+.home__benefit:nth-child(2):hover
+.home__benefit-icon {
+    animation: heart-beat 0.8s ease-in-out;
+}
+
+
+@keyframes heart-beat {
+
+    0% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.25);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.35);
+    }
+
+    65% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+home__benefit:nth-child(3):hover
+.home__benefit-icon {
+    animation: rainbow-slinky 1s ease-in-out;
+}
+
+
+@keyframes rainbow-slinky {
+
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+
+    20% {
+        transform: translateX(-12px) rotate(-12deg);
+    }
+
+    40% {
+        transform: translateX(10px) rotate(10deg);
+    }
+
+    60% {
+        transform: translateX(-7px) rotate(-7deg);
+    }
+
+    80% {
+        transform: translateX(4px) rotate(4deg);
+    }
+
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+
+}
+
+.home__benefit:nth-child(3):hover .home__benefit-icon {
+    animation: diamond-shine 1s ease-in-out;
+}
+
+@keyframes diamond-shine {
+
+    0% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+    }
+
+    25% {
+        transform: scale(1.2) rotate(-12deg);
+        filter: brightness(1.4);
+    }
+
+    50% {
+        transform: scale(1.3) rotate(8deg);
+        filter: brightness(1.8)
+                drop-shadow(0 0 10px rgba(0, 191, 255, 0.8));
+    }
+
+    75% {
+        transform: scale(1.15) rotate(-5deg);
+        filter: brightness(1.3);
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+    }
+}
+
+/* Accesibilidad */
+
+@media (prefers-reduced-motion: reduce) {
+    .home__benefit:nth-child(3):hover .home__benefit-icon {
+        animation: none;
+    }
+}
+
+.home__benefit-icon_crown {
+    position: relative;
+
+    width: 90px;
+
+    overflow: visible;
+}
+
+
+/* Corona principal */
+
+.home__crown_center {
+    position: relative;
+
+    display: block;
+
+    z-index: 2;
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+/* Coronas pequeñas */
+
+.home__crown_left,
+.home__crown_right {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    display: block;
+
+    font-size: 20px;
+
+    opacity: 0;
+
+    z-index: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.2);
+
+    transition:
+        transform 0.5s cubic-bezier(.34, 1.56, .64, 1),
+        opacity 0.3s ease;
+}
+
+.home__benefit:nth-child(4):hover
+.home__crown_center {
+    transform: scale(1.15);
+}
+
+.home__benefit:nth-child(4):hover
+.home__crown_left {
+
+    opacity: 1;
+
+    transform:
+        translate(-55px, -50%)
+        rotate(-20deg)
+        scale(0.75);
+}
+
+.home__benefit:nth-child(4):hover
+.home__crown_right {
+
+    opacity: 1;
+
+    transform:
+        translate(25px, -50%)
+        rotate(20deg)
+        scale(0.75);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .home__benefit-icon,
+    .home__crown {
+        animation: none !important;
+        transition: none !important;
+    }
+
+}
+
+
+
+/* ========================================
+   TEXTO BENEFICIOS
+======================================== */
+
+.home__benefit p {
+    margin: 0;
+
+    font-family: "Funny", Arial, sans-serif;
+
+    color: #0b2a4a;
+
+    font-size: 14px;
+    line-height: 1.35;
+    font-weight: 600;
+}
+
+
+/* ========================================
+   LAPTOP
+   1200px
+======================================== */
+
+@media screen and (max-width: 1200px) {
+
+    .home__hero {
+        min-height: 520px;
+    }
+
+
+    .home__image-container {
+        width: 58%;
+        min-height: 520px;
+
+        margin-right: -3%;
+    }
+
+
+    .home__content {
+        width: 45%;
+
+        padding:
+            40px
+            4%
+            40px
+            6%;
+    }
+
+
+    .home__title {
+        font-size: clamp(44px, 5vw, 65px);
+    }
+
+
+    .home__description {
+        font-size: 15px;
+    }
+
+
+    .home__buttons {
+        gap: 10px;
+    }
+
+
+    .home__button {
+        min-height: 46px;
+
+        padding: 0 18px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* ========================================
+   TABLET HORIZONTAL
+   1000px
+======================================== */
+
+@media screen and (max-width: 1000px) {
+
+    .home__hero {
+        min-height: 480px;
+    }
+
+
+    .home__image-container {
+        width: 57%;
+        min-height: 480px;
+    }
+
+
+    .home__content {
+        width: 46%;
+
+        padding:
+            35px
+            3%
+            35px
+            6%;
+    }
+
+
+    .home__title {
+        font-size: clamp(40px, 5vw, 55px);
+    }
+
+
+    .home__description {
+        margin-top: 20px;
+
+        font-size: 14px;
+    }
+
+
+    .home__buttons {
+        margin-top: 22px;
+
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    .home__button {
+        min-width: 190px;
+    }
+
+
+    .home__benefits {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+
+    .home__benefit {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    .home__benefit p {
+        font-size: 13px;
+    }
+}
+
+
+/* ========================================
+   TABLET / MÓVIL
+   850px
+======================================== */
+
+@media screen and (max-width: 850px) {
+
+    .home {
+        min-height: auto;
+    }
+
+
+    .home__hero {
+        min-height: auto;
+
+        flex-direction: column;
+    }
+
+
+    /*
+       En tablet/móvil el texto vuelve
+       arriba para mejorar la lectura.
+    */
+
+    .home__content {
+        order: 1;
+
+        width: 100%;
+
+        padding: 45px 8% 40px;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+
+    .home__title {
+        max-width: 600px;
+
+        margin: 0 auto;
+
+        font-size: clamp(45px, 9vw, 65px);
+    }
+
+
+    .home__description {
+        margin-top: 22px;
+
+        font-size: 15px;
+    }
+
+
+    .home__buttons {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        margin-top: 28px;
+    }
+
+
+    .home__button {
+        min-width: auto;
+    }
+
+
+    /*
+       Imagen debajo del texto.
+    */
+
+    .home__image-container {
+        order: 2;
+
+        width: 100%;
+        min-height: 430px;
+
+        margin-right: 0;
+
+        overflow: hidden;
+    }
+
+
+    /*
+       En móvil cambiamos el desvanecimiento
+       horizontal por uno vertical.
+    */
+
+    .home__image {
+        object-position: center;
+
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.65) 8%,
+            black 18%,
+            black 100%
+        );
+
+        mask-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.65) 8%,
+            black 18%,
+            black 100%
+        );
+    }
+
+
+    /* BENEFICIOS */
+
+    .home__benefits {
+        grid-template-columns: repeat(2, 1fr);
+
+        row-gap: 25px;
+
+        padding: 28px 5%;
+    }
+
+
+    .home__benefit {
+        border-right: none !important;
+    }
+}
+
+
+/* ========================================
+   MÓVIL
+   600px
+======================================== */
+
+@media screen and (max-width: 600px) {
+
+    .home__content {
+        padding:
+            35px
+            20px
+            35px;
+    }
+
+
+    .home__title {
+        font-size: clamp(40px, 13vw, 55px);
+        line-height: 0.98;
+    }
+
+
+    .home__description {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+
+    .home__description br {
+        display: none;
+    }
+
+
+    /* BOTONES */
+
+    .home__buttons {
+        width: 100%;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        margin-top: 25px;
+    }
+
+
+    .home__button {
+        width: 100%;
+        max-width: 280px;
+
+        min-height: 48px;
+
+        font-size: 13px;
+    }
+
+
+    /* IMAGEN */
+
+    .home__image-container {
+        min-height: 350px;
+    }
+
+
+    /* BENEFICIOS */
+
+    .home__benefits {
+        grid-template-columns: repeat(2, 1fr);
+
+        padding:
+            25px
+            10px
+            30px;
+
+        row-gap: 20px;
+    }
+
+
+    .home__benefit {
+        padding: 12px 8px;
+    }
+
+
+    .home__benefit-icon {
+        font-size: 28px;
+    }
+
+
+    .home__benefit p {
+        font-size: 12px;
+    }
+}
+
+
+/* ========================================
+   MÓVIL PEQUEÑO
+   400px
+======================================== */
+
+@media screen and (max-width: 400px) {
+
+    .home__content {
+        padding:
+            30px
+            15px
+            30px;
+    }
+
+
+    .home__title {
+        font-size: 42px;
+    }
+
+
+    .home__description {
+        font-size: 13px;
+    }
+
+
+    .home__image-container {
+        min-height: 300px;
+    }
+
+
+    .home__benefits {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+
+    .home__benefit p {
+        font-size: 11px;
+    }
+}
