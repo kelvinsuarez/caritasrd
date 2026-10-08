@@ -259,6 +259,87 @@
     outline-offset: 4px;
 }
 
+/* ========================================
+   ENLACE DEL LOGO
+======================================== */
+
+.header__logo-link {
+    display: block;
+    flex-shrink: 0;
+}
+
+.header__logo-link:focus-visible {
+    outline: 3px solid #ec1763;
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+
+/* ========================================
+   BOTÓN HAMBURGUESA
+======================================== */
+
+.header__menu-toggle {
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.75);
+
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.header__menu-toggle span {
+    display: block;
+
+    width: 24px;
+    height: 3px;
+
+    background-color: #0b2a4a;
+    border-radius: 10px;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease,
+        background-color 0.3s ease;
+}
+
+/* Transformación de hamburguesa a X */
+
+.header__menu-toggle_open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.header__menu-toggle_open span:nth-child(2) {
+    opacity: 0;
+}
+
+.header__menu-toggle_open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.header__menu-toggle:hover span {
+    background-color: #ec1763;
+}
+
+.header__menu-toggle:focus-visible {
+    outline: 3px solid #ec1763;
+    outline-offset: 4px;
+}
+
 
 /* ========================================
    RESPONSIVE - LAPTOP
@@ -341,43 +422,115 @@
 
 
 /* ========================================
-   RESPONSIVE - MÓVIL
-   Por ahora ocultamos navegación.
-   Después podemos crear menú hamburguesa.
+   RESPONSIVE - MENÚ MÓVIL
 ======================================== */
 
 @media screen and (max-width: 850px) {
 
     .header {
         min-height: 75px;
-
         justify-content: space-between;
-
         padding: 0 20px;
     }
 
     .header__logo {
         width: 145px;
         height: 60px;
-    }
-
-    .nav {
-        display: none;
+        margin-left: 0;
     }
 
     .header__buttons {
         margin-left: auto;
+        margin-right: 12px;
     }
 
     .header__button {
         min-height: 42px;
-
         padding: 0 15px;
-
         font-size: 12px;
     }
-}
 
+    /* Mostrar hamburguesa */
+
+    .header__menu-toggle {
+        display: flex;
+    }
+
+    /* Menú desplegable */
+
+    .nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        width: 100%;
+
+        display: block;
+
+        margin-left: 0;
+        padding: 0 20px;
+
+        box-sizing: border-box;
+
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 12px 24px rgba(11, 42, 74, 0.12);
+
+        border-radius: 0 0 20px 20px;
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        pointer-events: none;
+
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0.25s ease;
+    }
+
+    .nav_open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .nav__list {
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 12px 0 20px;
+    }
+
+    .nav__link {
+        height: auto;
+        min-height: 50px;
+
+        justify-content: center;
+
+        font-size: 15px;
+
+        border-bottom: 1px solid rgba(11, 42, 74, 0.08);
+    }
+
+    .nav__list li:last-child .nav__link {
+        border-bottom: none;
+    }
+
+    /* Línea rosada del enlace activo */
+
+    .nav__link::after {
+        bottom: 6px;
+        height: 2px;
+    }
+
+    .nav__link:hover::after,
+    .nav__link_active::after {
+        width: 35px;
+    }
+}
 
 /* ========================================
    RESPONSIVE - MÓVIL PEQUEÑO
@@ -387,12 +540,15 @@
 
     .header {
         min-height: 70px;
-
         padding: 0 15px;
     }
 
     .header__logo {
         width: 125px;
+    }
+
+    .header__buttons {
+        margin-right: 8px;
     }
 
     .header__button_reservation {
@@ -401,9 +557,7 @@
 
     .header__button_cotization {
         min-height: 40px;
-
         padding: 0 14px;
-
         font-size: 12px;
     }
 }
