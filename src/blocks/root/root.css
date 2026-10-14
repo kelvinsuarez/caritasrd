@@ -5,9 +5,10 @@
     font-weight: 400;
     font-display: swap;
 }
+
 @font-face {
-    font-family: "Poppins";
-    src: url("../../font/Poppins.ttf") format("truetype");
+    font-family: "Party";
+    src: url("../../font/Party.ttf") format("truetype");
     font-style: normal;
     font-weight: 400;
     font-display: swap;
