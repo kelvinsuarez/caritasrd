@@ -1,0 +1,881 @@
+/* ========================================
+   GALLERY - ESTILOS GENERALES
+======================================== */
+
+.gallery {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    font-family: "Funny", sans-serif;
+    color: #0b2a4a;
+}
+
+.gallery *,
+.gallery *::before,
+.gallery *::after {
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   BLOQUE 1 - HERO
+======================================== */
+
+.gallery__hero {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 1fr 0.9fr 1fr;
+    align-items: center;
+
+    gap: 35px;
+
+    width: min(100% - 80px, 1300px);
+    min-height: 350px;
+
+    margin: 35px auto 75px;
+    padding: 30px 25px;
+}
+
+.gallery__hero-title-container {
+    position: relative;
+    z-index: 2;
+}
+
+.gallery__hero-title {
+    margin: 0;
+
+    font-family: "Party", "Funny", "Poppins", sans-serif;
+    font-size: clamp(48px, 5.5vw, 85px);
+    font-weight: 400;
+    line-height: 1.05;
+
+    color: #0b2a4a;
+}
+
+.gallery__hero-title span {
+    display: block;
+    color: #ec1763;
+}
+
+.gallery__hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.gallery__hero-subtitle {
+    margin: 0 0 18px;
+
+    font-family: "Party", "Poppins", sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1.3;
+
+    color: #ec1763;
+}
+
+.gallery__hero-description {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.85;
+
+    color: #34516b;
+}
+
+.gallery__hero-image-container {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    height: 330px;
+
+    overflow: hidden;
+
+    border-radius: 35px;
+
+    transform: rotate(2deg);
+
+    box-shadow: 0 18px 35px rgba(11, 42, 74, 0.14);
+}
+
+.gallery__hero-image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.gallery__hero-decoration {
+    position: absolute;
+    z-index: 3;
+
+    font-size: 35px;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+.gallery__hero-decoration_heart {
+    top: 10px;
+    left: 32%;
+
+    color: #ec1763;
+    font-size: 48px;
+
+    transform: rotate(-15deg);
+}
+
+.gallery__hero-decoration_star {
+    top: 15px;
+    right: 15px;
+
+    transform: rotate(15deg);
+}
+
+
+/* ========================================
+   BLOQUE 2 - CARRUSEL
+======================================== */
+
+.gallery__carousel-section {
+    position: relative;
+
+    width: min(100% - 80px, 1300px);
+
+    margin: 0 auto 100px;
+    padding: 40px 45px 30px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border: 1px solid rgba(236, 23, 99, 0.06);
+    border-radius: 40px;
+
+    box-shadow: 0 15px 40px rgba(236, 23, 99, 0.09);
+}
+
+.gallery__carousel-heading {
+    width: fit-content;
+    max-width: 100%;
+
+    margin: 0 auto 35px;
+    padding: 12px 30px;
+
+    background: #ffe7f0;
+
+    border-radius: 30px;
+
+    font-family: "Party", "Poppins", sans-serif;
+    font-size: 23px;
+    font-weight: 400;
+
+    text-align: center;
+    color: #ec1763;
+}
+
+.gallery__carousel {
+    position: relative;
+    width: 100%;
+}
+
+.gallery__carousel-track {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+    width: 100%;
+}
+
+.gallery__carousel-item {
+    position: relative;
+
+    min-width: 0;
+    aspect-ratio: 3 / 3.5;
+
+    overflow: hidden;
+
+    background: #fff0f6;
+
+    border-radius: 25px;
+
+    box-shadow: 0 6px 16px rgba(11, 42, 74, 0.07);
+}
+
+.gallery__carousel-item img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform 0.4s ease;
+}
+
+.gallery__carousel-item:hover img {
+    transform: scale(1.05);
+}
+
+
+/* ========================================
+   FLECHAS DEL CARRUSEL
+======================================== */
+
+.gallery__arrow {
+    position: absolute;
+    z-index: 3;
+
+    top: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 52px;
+    height: 52px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ec1763;
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 24px;
+
+    cursor: pointer;
+
+    transform: translateY(-50%);
+
+    box-shadow: 0 7px 18px rgba(236, 23, 99, 0.22);
+
+    transition:
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.gallery__arrow:hover {
+    background: #c90f50;
+
+    box-shadow: 0 10px 22px rgba(236, 23, 99, 0.3);
+}
+
+.gallery__arrow_left {
+    left: -27px;
+}
+
+.gallery__arrow_right {
+    right: -27px;
+}
+
+.gallery__arrow:focus-visible,
+.gallery__dot:focus-visible,
+.gallery__instagram-button:focus-visible {
+    outline: 3px solid #0b2a4a;
+    outline-offset: 4px;
+}
+
+
+/* ========================================
+   INDICADORES DEL CARRUSEL
+======================================== */
+
+.gallery__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+    gap: 11px;
+
+    margin-top: 28px;
+}
+
+.gallery__dot {
+    width: 13px;
+    height: 13px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ffc2d8;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+.gallery__dot:hover {
+    background: #ff8db5;
+}
+
+.gallery__dot_active {
+    background: #ec1763;
+    transform: scale(1.2);
+}
+
+
+/* ========================================
+   BLOQUE 3 - REELS DE INSTAGRAM
+======================================== */
+
+.gallery__reels {
+    position: relative;
+
+    width: 100%;
+
+    padding:
+        80px
+        max(40px, calc((100% - 1220px) / 2))
+        90px;
+
+    background: linear-gradient(
+        180deg,
+        #ffe9f3 0%,
+        #fff2f8 100%
+    );
+
+    text-align: center;
+}
+
+.gallery__reels-heading {
+    position: relative;
+    z-index: 1;
+
+    margin-bottom: 40px;
+}
+
+.gallery__reels-title {
+    margin: 0 0 18px;
+
+    font-family: "Party", "Funny", "Poppins", sans-serif;
+    font-size: clamp(38px, 4.5vw, 62px);
+    font-weight: 400;
+    line-height: 1.2;
+
+    color: #0b2a4a;
+}
+
+.gallery__reels-title > span:first-child {
+    color: #ec1763;
+}
+
+.gallery__reels-sparkle {
+    display: inline-block;
+
+    margin-left: 12px;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 30px;
+
+    vertical-align: middle;
+}
+
+.gallery__reels-description {
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    font-size: 15px;
+    line-height: 1.85;
+
+    color: #34516b;
+}
+
+
+/* ========================================
+   CUADRÍCULA DE REELS
+======================================== */
+
+.gallery__reels-grid {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+    width: 100%;
+    max-width: 1220px;
+
+    margin: 0 auto 45px;
+}
+
+.gallery__reel {
+    position: relative;
+
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: 9 / 16;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 3px solid #ffffff;
+    border-radius: 24px;
+
+    box-shadow: 0 12px 28px rgba(11, 42, 74, 0.12);
+}
+
+.gallery__reel iframe {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    border-radius: 20px;
+
+    background: #ffffff;
+}
+
+
+/* ========================================
+   BOTÓN DE INSTAGRAM
+======================================== */
+
+.gallery__instagram-button {
+    position: relative;
+    z-index: 1;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    min-height: 58px;
+    max-width: 100%;
+
+    padding: 12px 30px;
+
+    background: linear-gradient(
+        135deg,
+        #ffe66d 0%,
+        #ffc107 100%
+    );
+
+    border-radius: 35px;
+
+    color: #0b2a4a;
+
+    font-family: "Funny", "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+
+    text-align: center;
+    text-decoration: none;
+
+    box-shadow: 0 8px 20px rgba(255, 193, 7, 0.25);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.gallery__instagram-button:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 12px 25px rgba(255, 193, 7, 0.35);
+}
+
+.gallery__instagram-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 36px;
+    height: 36px;
+
+    background: linear-gradient(
+        45deg,
+        #feda75,
+        #fa7e1e,
+        #d62976,
+        #962fbf,
+        #4f5bd5
+    );
+
+    border-radius: 11px;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+/* ========================================
+   DECORACIONES DE REELS
+======================================== */
+
+.gallery__reels-decoration {
+    position: absolute;
+
+    font-size: 35px;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+.gallery__reels-decoration_heart {
+    top: 55px;
+    right: 10%;
+
+    transform: rotate(15deg);
+}
+
+.gallery__reels-decoration_star {
+    bottom: 40px;
+    left: 9%;
+
+    transform: rotate(-15deg);
+}
+
+
+/* ========================================
+   RESPONSIVE - LAPTOP / TABLET
+======================================== */
+
+@media screen and (max-width: 1100px) {
+
+    .gallery__hero {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .gallery__hero-title-container {
+        grid-column: 1 / -1;
+    }
+
+    .gallery__hero-title span {
+        display: inline;
+    }
+
+    .gallery__hero-content {
+        grid-column: 1;
+    }
+
+    .gallery__hero-image-container {
+        grid-column: 2;
+    }
+
+    .gallery__carousel-section {
+        padding: 35px 35px 25px;
+    }
+
+    .gallery__reels-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        max-width: 650px;
+    }
+
+    .gallery__reels {
+        padding: 70px 35px 80px;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE - TABLET PEQUEÑA
+======================================== */
+
+@media screen and (max-width: 750px) {
+
+    .gallery__hero,
+    .gallery__carousel-section {
+        width: calc(100% - 40px);
+    }
+
+    .gallery__hero {
+        gap: 25px;
+        margin-bottom: 55px;
+    }
+
+    .gallery__hero-title {
+        font-size: 58px;
+    }
+
+    .gallery__hero-image-container {
+        height: 280px;
+    }
+
+    .gallery__carousel-section {
+        padding: 30px 25px;
+    }
+
+    .gallery__carousel-track {
+        gap: 12px;
+    }
+
+    .gallery__carousel-item {
+        border-radius: 18px;
+    }
+
+    .gallery__arrow {
+        width: 44px;
+        height: 44px;
+
+        font-size: 20px;
+    }
+
+    .gallery__arrow_left {
+        left: -18px;
+    }
+
+    .gallery__arrow_right {
+        right: -18px;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE - MÓVIL
+======================================== */
+
+@media screen and (max-width: 650px) {
+
+    .gallery__hero,
+    .gallery__carousel-section {
+        width: calc(100% - 30px);
+    }
+
+    /* HERO */
+
+    .gallery__hero {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+
+        margin: 20px auto 50px;
+        padding: 20px 10px;
+
+        text-align: center;
+    }
+
+    .gallery__hero-title-container,
+    .gallery__hero-content,
+    .gallery__hero-image-container {
+        grid-column: 1;
+    }
+
+    .gallery__hero-title {
+        font-size: clamp(44px, 10vw, 62px);
+    }
+
+    .gallery__hero-subtitle {
+        font-size: 23px;
+        font-family: "Party", sans-serif;
+    }
+
+    .gallery__hero-description {
+        max-width: 450px;
+
+        margin: 0 auto;
+
+        font-size: 14px;
+    }
+
+    .gallery__hero-image-container {
+        width: 100%;
+        max-width: 450px;
+        height: 290px;
+
+        margin: 0 auto;
+
+        border-radius: 25px;
+
+        transform: rotate(1deg);
+    }
+
+    .gallery__hero-decoration_heart {
+        top: 5px;
+        left: 10px;
+    }
+
+    .gallery__hero-decoration_star {
+        right: 5px;
+    }
+
+    /* CARRUSEL */
+
+    .gallery__carousel-section {
+        margin-bottom: 65px;
+        padding: 30px 20px;
+
+        border-radius: 28px;
+    }
+
+    .gallery__carousel-heading {
+        margin-bottom: 25px;
+        padding: 10px 16px;
+
+        font-size: 19px;
+    }
+
+    .gallery__carousel-track {
+        grid-template-columns: 1fr;
+
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .gallery__carousel-item {
+        display: none;
+
+        aspect-ratio: 3 / 3.5;
+
+        border-radius: 22px;
+    }
+
+    .gallery__carousel-item:first-child {
+        display: block;
+    }
+
+    .gallery__arrow {
+        width: 42px;
+        height: 42px;
+
+        font-size: 20px;
+    }
+
+    .gallery__arrow_left {
+        left: -12px;
+    }
+
+    .gallery__arrow_right {
+        right: -12px;
+    }
+
+    .gallery__dots {
+        margin-top: 22px;
+    }
+
+    /* REELS */
+
+    .gallery__reels {
+        padding: 60px 15px 70px;
+    }
+
+    .gallery__reels-title {
+        font-size: 38px;
+    }
+
+    .gallery__reels-description {
+        font-size: 14px;
+    }
+
+    .gallery__reels-grid {
+        gap: 12px;
+        margin-bottom: 35px;
+    }
+
+    .gallery__reel {
+        border-radius: 17px;
+    }
+
+    .gallery__reel iframe {
+        border-radius: 14px;
+    }
+
+    /* BOTÓN INSTAGRAM */
+
+    .gallery__instagram-button {
+        padding: 12px 20px;
+
+        font-size: 18px;
+        gap: 10px;
+    }
+
+    .gallery__instagram-icon {
+        width: 32px;
+        height: 32px;
+
+        font-size: 25px;
+    }
+
+    .gallery__reels-decoration {
+        font-size: 26px;
+    }
+
+    .gallery__reels-decoration_heart {
+        right: 4%;
+        top: 25px;
+    }
+
+    .gallery__reels-decoration_star {
+        left: 4%;
+        bottom: 20px;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE - MÓVIL PEQUEÑO
+======================================== */
+
+@media screen and (max-width: 380px) {
+
+    .gallery__hero-title {
+        font-size: 42px;
+    }
+
+    .gallery__hero-image-container {
+        height: 250px;
+    }
+
+    .gallery__carousel-section {
+        padding: 25px 15px;
+    }
+
+    .gallery__carousel-heading {
+        font-size: 17px;
+    }
+
+    .gallery__reels-grid {
+        grid-template-columns: 1fr;
+
+        max-width: 280px;
+    }
+
+    .gallery__reels-title {
+        font-size: 32px;
+    }
+
+    .gallery__instagram-button {
+        font-size: 16px;
+        gap: 8px;
+    }
+}
+
+
+/* ========================================
+   ACCESIBILIDAD
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .gallery__carousel-item img,
+    .gallery__instagram-button,
+    .gallery__dot,
+    .gallery__arrow {
+        transition: none;
+    }
+}

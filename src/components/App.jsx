@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Header from './Header.jsx';
 import Home from './Home.jsx';
 import Services from './Services.jsx';
+import Gallery from './Gallery.jsx';
 import FormReservation from './FormReservation.jsx';
 import FormCotization from './FormCotization.jsx';
 import Footer from './Footer.jsx';
@@ -48,11 +49,21 @@ function App() {
                 openCotization = {openCotization}
               />
             }
+          />  
+            
+          <Route
+            path="/services"
+            element={
+              <Services openCotization={openCotization} />
+            }
           />
-          <Route path='/services' element={<Services/>}/>
-        </Routes>
-        <Footer/>
-        {reservationOpen && (
+          <Route
+            path="/gallery"
+            element={<Gallery />}
+          />
+          </Routes>  
+          <Footer/>
+            {reservationOpen && (
             <FormReservation
               closeReservation={closeReservation}
             />
