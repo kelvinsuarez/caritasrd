@@ -5,6 +5,7 @@ import Header from './Header.jsx';
 import Home from './Home.jsx';
 import Services from './Services.jsx';
 import Gallery from './Gallery.jsx';
+import About from './About.jsx';
 import FormReservation from './FormReservation.jsx';
 import FormCotization from './FormCotization.jsx';
 import Footer from './Footer.jsx';
@@ -61,12 +62,16 @@ function App() {
             path="/gallery"
             element={<Gallery />}
           />
-          </Routes>  
-          <Footer/>
-            {reservationOpen && (
-            <FormReservation
-              closeReservation={closeReservation}
-            />
+          <Route
+            path="/info"
+            element={<About />}
+          />
+        </Routes>  
+        <Footer/>
+          {reservationOpen && (
+          <FormReservation
+            closeReservation={closeReservation}
+          />
         )}
         {cotizationOpen && (
             <FormCotization
