@@ -6,6 +6,7 @@ import Home from './Home.jsx';
 import Services from './Services.jsx';
 import Gallery from './Gallery.jsx';
 import About from './About.jsx';
+import Contact from "./Contact";
 import FormReservation from './FormReservation.jsx';
 import FormCotization from './FormCotization.jsx';
 import Footer from './Footer.jsx';
@@ -65,6 +66,15 @@ function App() {
           <Route
             path="/info"
             element={<About />}
+          />
+          <Route
+            path="/contact"
+            element={
+              <Contact
+                openReservation={openReservation}
+                openCotization={openCotization}
+              />
+            }
           />
         </Routes>  
         <Footer/>

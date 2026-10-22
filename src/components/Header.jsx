@@ -37,7 +37,7 @@ function Header({ openReservation, openCotization }) {
         { path: "/services", label: "Servicios" },
         { path: "/gallery", label: "Galería" },
         { path: "/info", label: "Sobre Nosotros" },
-        { path: "/contacto", label: "Contacto" },
+        { path: "/contact", label: "Contacto" },
     ];
 
     return (

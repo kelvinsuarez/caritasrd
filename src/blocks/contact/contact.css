@@ -1,0 +1,1338 @@
+/* ==========================================
+   CARITAS RD - PÁGINA DE CONTACTO
+   Archivo: contact.css
+========================================== */
+
+.contact {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  color: #0b2a4a;
+  font-family: "Poppins", sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 3% 12%,
+      #e6f7ff 0,
+      transparent 19%
+    ),
+    radial-gradient(
+      circle at 98% 35%,
+      #fff0f7 0,
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at 5% 76%,
+      #fff6dc 0,
+      transparent 18%
+    ),
+    #ffffff;
+}
+
+.contact,
+.contact * {
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   CONTENEDORES GENERALES
+========================================== */
+
+.contact__hero,
+.contact__methods,
+.contact__message-section,
+.contact__faq,
+.contact__cta {
+  width: min(1200px, calc(100% - 60px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================
+   HERO
+========================================== */
+
+.contact__hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 55px;
+
+  min-height: 460px;
+  padding: 65px 20px 70px;
+}
+
+.contact__hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.contact__eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 9px 19px;
+
+  border-radius: 30px;
+  background: #fff0f6;
+
+  color: #ec1763;
+  font-family: "Funny", sans-serif;
+  font-size: 18px;
+}
+
+.contact__hero-title {
+  max-width: 590px;
+  margin: 0 0 24px;
+
+  color: #0b2a4a;
+  font-family: "Party", sans-serif;
+  font-size: clamp(48px, 5.6vw, 78px);
+  font-weight: 400;
+  line-height: 1.04;
+}
+
+.contact__hero-title span {
+  display: block;
+  color: #ec1763;
+}
+
+.contact__hero-description {
+  max-width: 480px;
+  margin: 0 0 30px;
+
+  font-size: 17px;
+  line-height: 1.85;
+  color: #41566b;
+}
+
+/* Imagen del hero */
+
+.contact__hero-visual {
+  position: relative;
+  width: 100%;
+  max-width: 550px;
+  justify-self: end;
+}
+
+.contact__hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  border: 7px solid #ffc9df;
+  border-radius: 28% 10% 25% 12% /
+    15% 25% 13% 22%;
+
+  background: #fff0f6;
+
+  box-shadow: 0 18px 38px rgba(11, 42, 74, 0.13);
+}
+
+.contact__hero-image {
+  display: block;
+  width: 100%;
+  height: 380px;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.contact__hero-star,
+.contact__hero-heart {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.contact__hero-star {
+  top: -24px;
+  right: 12px;
+
+  font-size: 43px;
+  transform: rotate(15deg);
+}
+
+.contact__hero-heart {
+  bottom: -20px;
+  left: -18px;
+
+  font-size: 40px;
+  transform: rotate(-16deg);
+}
+
+.contact__hero-sticker {
+  position: absolute;
+  right: -25px;
+  bottom: -30px;
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 165px;
+  min-height: 125px;
+  padding: 18px;
+
+  border-radius: 48% 52% 46% 54%;
+  background: #ffe38b;
+
+  color: #0b2a4a;
+  font-family: "Funny", sans-serif;
+  font-size: 19px;
+  line-height: 1.25;
+  text-align: center;
+
+  transform: rotate(9deg);
+
+  box-shadow: 0 10px 24px rgba(11, 42, 74, 0.12);
+}
+
+.contact__hero-sticker span {
+  display: block;
+  color: #ec1763;
+}
+
+/* ==========================================
+   TÍTULOS GENERALES DE SECCIONES
+========================================== */
+
+.contact__section-heading {
+  max-width: 720px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.contact__section-eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+
+  color: #ec1763;
+  font-family: "Funny", sans-serif;
+  font-size: 19px;
+}
+
+.contact__section-title {
+  margin: 0 0 15px;
+
+  color: #0b2a4a;
+  font-family: "Party", sans-serif;
+  font-size: clamp(38px, 4.3vw, 58px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.contact__section-title span {
+  color: #ec1763;
+}
+
+.contact__section-heading p {
+  max-width: 560px;
+  margin: 0 auto;
+
+  color: #5b6d7d;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* ==========================================
+   TARJETAS DE CONTACTO
+========================================== */
+
+.contact__methods {
+  padding: 35px 0 80px;
+}
+
+.contact__cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.contact__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 0;
+  min-height: 245px;
+  padding: 30px 18px 25px;
+
+  border: 2px solid transparent;
+  border-radius: 25px;
+
+  text-align: center;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.contact__card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 14px 28px rgba(11, 42, 74, 0.1);
+}
+
+.contact__card--whatsapp {
+  background: #eaf9ee;
+  border-color: #d4f1dc;
+}
+
+.contact__card--instagram {
+  background: #fff0f7;
+  border-color: #ffdce9;
+}
+
+.contact__card--email {
+  background: #fff8df;
+  border-color: #ffedb5;
+}
+
+.contact__card--location {
+  background: #eaf6ff;
+  border-color: #d4eaff;
+}
+
+.contact__card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+  margin-bottom: 16px;
+
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
+
+  font-size: 34px;
+}
+
+.contact__card h3 {
+  margin: 0 0 12px;
+
+  color: #0b2a4a;
+  font-family: "Funny", sans-serif;
+  font-size: 23px;
+  font-weight: 400;
+}
+
+.contact__card p {
+  flex: 1;
+  margin: 0 0 20px;
+
+  color: #566b7b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.contact__card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #ec1763;
+  font-family: "Funny", sans-serif;
+  font-size: 17px;
+  text-decoration: none;
+
+  transition: transform 0.2s ease;
+}
+
+.contact__card-link:hover {
+  color: #c90f51;
+  transform: translateX(3px);
+}
+
+/* ==========================================
+   SECCIÓN DEL FORMULARIO
+========================================== */
+
+.contact__message-section {
+  padding: 25px 0 85px;
+  scroll-margin-top: 110px;
+}
+
+/* ==========================================
+   CONTENEDOR GENERAL
+========================================== */
+
+.contact__message-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  overflow: hidden;
+
+  border-radius: 35px;
+
+  background: linear-gradient(
+    115deg,
+    #fff1f6 0%,
+    #ffeaf3 55%,
+    #fff0f7 100%
+  );
+
+  box-shadow: 0 12px 35px rgba(11, 42, 74, 0.06);
+}
+
+/* ==========================================
+   ESPACIO DEL FORMULARIO
+========================================== */
+
+.contact__message-form {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 45px 35px 45px 45px;
+}
+
+/* ==========================================
+   CONTENEDOR DE LA FOTOGRAFÍA
+========================================== */
+
+.contact__message-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 390px;
+
+  padding: 45px 28px;
+
+  background: transparent;
+  isolation: isolate;
+}
+
+/* ==========================================
+   DECORACIÓN AZUL DETRÁS DE LA FOTO
+========================================== */
+
+.contact__message-visual::before {
+  content: "";
+  position: absolute;
+
+  top: 12%;
+  left: 2%;
+
+  width: 92%;
+  height: 80%;
+
+  border-radius:
+    35% 65% 60% 40% /
+    45% 40% 60% 55%;
+
+  background: #ccefff;
+
+  transform: rotate(-12deg);
+  z-index: -1;
+
+  pointer-events: none;
+}
+
+/* ==========================================
+   DECORACIÓN ROSADA DETRÁS DE LA FOTO
+========================================== */
+
+.contact__message-visual::after {
+  content: "";
+  position: absolute;
+
+  top: 5%;
+  right: 0;
+
+  width: 78%;
+  height: 88%;
+
+  border-radius:
+    45% 55% 35% 65% /
+    55% 40% 60% 45%;
+
+  background: #ffc7e3;
+
+  transform: rotate(14deg);
+  z-index: -1;
+
+  pointer-events: none;
+}
+
+/* ==========================================
+   MARCO BLANCO DE LA FOTOGRAFÍA
+========================================== */
+
+.contact__message-image-wrapper {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  max-width: 350px;
+
+  padding: 7px;
+  overflow: hidden;
+
+  border: none;
+  border-radius: 20px;
+
+  background: #ffffff;
+
+  transform: rotate(7deg);
+
+  box-shadow:
+    0 15px 30px rgba(11, 42, 74, 0.16),
+    0 4px 10px rgba(11, 42, 74, 0.06);
+
+  transition: transform 0.3s ease;
+}
+
+.contact__message-image-wrapper:hover {
+  transform: rotate(3deg) scale(1.02);
+}
+
+/* ==========================================
+   FOTOGRAFÍA
+========================================== */
+
+.contact__message-image {
+  display: block;
+
+  width: 100%;
+  height: 335px;
+
+  border-radius: 14px;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ==========================================
+   NOTA AMARILLA
+========================================== */
+
+.contact__message-sticker {
+  position: absolute;
+
+  top: 0px;
+  right: 0;
+  bottom: auto;
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 135px;
+  min-height: 115px;
+
+  padding: 15px;
+
+  border-radius: 15px;
+
+  background: #fff0b8;
+  color: #0b2a4a;
+
+  font-family: "Funny", sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.3;
+  text-align: center;
+
+  transform: rotate(8deg);
+
+  box-shadow: 0 8px 18px rgba(11, 42, 74, 0.12);
+}
+
+.contact__message-sticker span {
+  display: block;
+  color: #ec1763;
+}
+
+/* ==========================================
+   ESTRELLA DECORATIVA
+========================================== */
+
+.contact__message-star {
+  position: absolute;
+
+  top: 15px;
+  left: 5px;
+  z-index: 3;
+
+  font-size: 40px;
+
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+/* ==========================================
+   PREGUNTAS FRECUENTES
+========================================== */
+
+.contact__faq {
+  padding: 25px 0 90px;
+}
+
+.contact__faq-list {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.contact__faq-item {
+  margin-bottom: 15px;
+
+  overflow: hidden;
+  border: 2px solid #e7eff7;
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.contact__faq-item--open {
+  border-color: #ffc9df;
+  box-shadow: 0 8px 20px rgba(236, 23, 99, 0.06);
+}
+
+.contact__faq-question {
+  margin: 0;
+}
+
+.contact__faq-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  width: 100%;
+  padding: 20px 25px;
+
+  border: none;
+  background: transparent;
+
+  color: #0b2a4a;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.contact__faq-icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+  background: #fff0f6;
+
+  color: #ec1763;
+  font-family: "Poppins", sans-serif;
+  font-size: 23px;
+  font-weight: 400;
+}
+
+.contact__faq-item--open .contact__faq-icon {
+  background: #ec1763;
+  color: #ffffff;
+}
+
+.contact__faq-answer {
+  padding: 0 25px 22px;
+}
+
+.contact__faq-answer[hidden] {
+  display: none;
+}
+
+.contact__faq-answer p {
+  margin: 0;
+
+  color: #5b6d7d;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.contact__faq-footer {
+  margin: 28px 0 0;
+  text-align: center;
+
+  color: #52697b;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.contact__faq-footer a {
+  margin-left: 6px;
+  color: #ec1763;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contact__faq-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================
+   LLAMADO FINAL A LA ACCIÓN
+========================================== */
+
+.contact__cta {
+  position: relative;
+  margin-bottom: 80px;
+  padding: 55px 40px;
+
+  overflow: hidden;
+  border-radius: 35px;
+
+  background:
+    radial-gradient(
+      circle at 10% 25%,
+      #d4f0ff 0,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 90% 75%,
+      #ffe5f0 0,
+      transparent 35%
+    ),
+    #eaf7ff;
+}
+
+.contact__cta-content {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  max-width: 780px;
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.contact__cta-eyebrow {
+  margin-bottom: 15px;
+
+  color: #ec1763;
+  font-family: "Funny", sans-serif;
+  font-size: 19px;
+}
+
+.contact__cta h2 {
+  margin: 0 0 20px;
+
+  color: #0b2a4a;
+  font-family: "Party", sans-serif;
+  font-size: clamp(38px, 4.5vw, 62px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.contact__cta h2 span {
+  color: #ec1763;
+}
+
+.contact__cta p {
+  max-width: 580px;
+  margin: 0 0 30px;
+
+  color: #52697b;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.contact__cta-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.contact__cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 50px;
+  padding: 13px 27px;
+
+  border: 2px solid transparent;
+  border-radius: 40px;
+
+  font-family: "Funny", sans-serif;
+  font-size: 19px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.contact__cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(11, 42, 74, 0.12);
+}
+
+.contact__cta-button--reservation {
+  background: #ec1763;
+  color: #ffffff;
+}
+
+.contact__cta-button--reservation:hover {
+  background: #d70f56;
+}
+
+.contact__cta-button--cotization {
+  background: #ffc107;
+  color: #0b2a4a;
+}
+
+.contact__cta-button--cotization:hover {
+  background: #f4b700;
+}
+
+.contact__cta-decoration {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.contact__cta-decoration--star {
+  top: 30px;
+  left: 45px;
+
+  font-size: 42px;
+  transform: rotate(-15deg);
+}
+
+.contact__cta-decoration--heart {
+  right: 45px;
+  bottom: 30px;
+
+  font-size: 45px;
+  transform: rotate(15deg);
+}
+
+/* ==========================================
+   ACCESIBILIDAD
+========================================== */
+
+.contact a:focus-visible,
+.contact button:focus-visible {
+  outline: 3px solid #0b2a4a;
+  outline-offset: 4px;
+}
+
+/* ==========================================
+   RESPONSIVE - TABLETAS GRANDES
+========================================== */
+
+@media screen and (max-width: 1100px) {
+  .contact__hero {
+    gap: 30px;
+  }
+
+  .contact__hero-title {
+    font-size: clamp(45px, 5.5vw, 68px);
+  }
+
+  .contact__hero-image {
+    height: 340px;
+  }
+
+  .contact__hero-sticker {
+    right: -10px;
+    bottom: -25px;
+    width: 135px;
+    min-height: 105px;
+    font-size: 16px;
+  }
+
+  .contact__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .contact__message-form {
+    padding: 40px 30px;
+  }
+
+  .contact__message-visual {
+    padding: 35px 25px;
+  }
+
+  .contact__message-image {
+    height: 350px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE - TABLETAS Y CELULARES
+========================================== */
+
+@media screen and (max-width: 750px) {
+  .contact__hero,
+  .contact__methods,
+  .contact__message-section,
+  .contact__faq,
+  .contact__cta {
+    width: calc(100% - 35px);
+  }
+
+  /* Hero */
+
+  .contact__hero {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 45px 10px 60px;
+    text-align: center;
+  }
+
+  .contact__hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact__hero-title {
+    max-width: 570px;
+    font-size: clamp(46px, 9vw, 68px);
+  }
+
+  .contact__hero-description {
+    max-width: 530px;
+    font-size: 15px;
+  }
+
+  .contact__hero-visual {
+    justify-self: center;
+    max-width: 530px;
+  }
+
+  .contact__hero-image {
+    height: 340px;
+  }
+
+  .contact__hero-sticker {
+    right: 0;
+    bottom: -30px;
+    width: 125px;
+    min-height: 95px;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  /* Títulos */
+
+  .contact__section-heading {
+    margin-bottom: 30px;
+  }
+
+  .contact__section-title {
+    font-size: clamp(36px, 7vw, 50px);
+  }
+
+  .contact__section-heading p {
+    font-size: 15px;
+  }
+
+  /* Tarjetas */
+
+  .contact__methods {
+    padding: 30px 0 65px;
+  }
+
+  .contact__cards {
+    gap: 15px;
+  }
+
+  .contact__card {
+    min-height: 230px;
+    padding: 25px 15px;
+  }
+
+  /* Formulario e imagen */
+
+  .contact__message-section {
+  padding: 15px 0 70px;
+}
+
+.contact__message-layout {
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-radius: 28px;
+}
+
+.contact__message-form {
+  padding: 35px 30px 20px;
+}
+
+.contact__message-visual {
+  min-height: 360px;
+  padding: 30px 45px 45px;
+}
+
+.contact__message-image-wrapper {
+  max-width: 330px;
+  padding: 7px;
+  border: none;
+  border-radius: 18px;
+  transform: rotate(5deg);
+}
+
+.contact__message-image {
+  height: 300px;
+  border-radius: 12px;
+}
+
+.contact__message-sticker {
+  top: 0px;
+  right: 12%;
+  bottom: auto;
+
+  width: 115px;
+  min-height: 95px;
+  padding: 12px;
+
+  border-radius: 13px;
+  font-size: 14px;
+  transform: rotate(8deg);
+}
+
+.contact__message-star {
+  top: 15px;
+  left: 15%;
+  font-size: 36px;
+}
+
+  /* Preguntas frecuentes */
+
+  .contact__faq {
+    padding: 15px 0 70px;
+  }
+
+  .contact__faq-toggle {
+    padding: 18px 20px;
+    font-size: 15px;
+  }
+
+  /* CTA */
+
+  .contact__cta {
+    margin-bottom: 60px;
+    padding: 45px 25px;
+  }
+
+  .contact__cta h2 {
+    font-size: clamp(38px, 7vw, 52px);
+  }
+
+  .contact__cta-decoration--star {
+    top: 15px;
+    left: 15px;
+    font-size: 30px;
+  }
+
+  .contact__cta-decoration--heart {
+    right: 15px;
+    bottom: 15px;
+    font-size: 32px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE - CELULARES PEQUEÑOS
+========================================== */
+
+@media screen and (max-width: 480px) {
+  .contact__hero,
+  .contact__methods,
+  .contact__message-section,
+  .contact__faq,
+  .contact__cta {
+    width: calc(100% - 24px);
+  }
+
+  /* Hero */
+
+  .contact__hero {
+    gap: 28px;
+    padding: 35px 5px 55px;
+  }
+
+  .contact__eyebrow {
+    font-size: 15px;
+    padding: 8px 14px;
+  }
+
+  .contact__hero-title {
+    margin-bottom: 20px;
+    font-size: clamp(42px, 12vw, 55px);
+  }
+
+  .contact__hero-description {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+
+  .contact__hero-image-wrapper {
+    border-width: 5px;
+  }
+
+  .contact__hero-image {
+    height: 255px;
+  }
+
+  .contact__hero-star {
+    top: -20px;
+    right: 5px;
+    font-size: 30px;
+  }
+
+  .contact__hero-heart {
+    bottom: -12px;
+    left: 0;
+    font-size: 30px;
+  }
+
+  .contact__hero-sticker {
+    right: 0;
+    bottom: -25px;
+    width: 105px;
+    min-height: 82px;
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  /* Títulos */
+
+  .contact__section-eyebrow {
+    font-size: 16px;
+  }
+
+  .contact__section-title {
+    font-size: 39px;
+  }
+
+  .contact__section-heading p {
+    font-size: 14px;
+  }
+
+  /* Tarjetas */
+
+  .contact__methods {
+    padding: 20px 0 55px;
+  }
+
+  .contact__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .contact__card {
+    min-height: 220px;
+    padding: 22px 10px 20px;
+    border-radius: 20px;
+  }
+
+  .contact__card-icon {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 12px;
+    font-size: 27px;
+  }
+
+  .contact__card h3 {
+    font-size: 18px;
+  }
+
+  .contact__card p {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .contact__card-link {
+    font-size: 14px;
+  }
+
+  /* Formulario e imagen */
+
+  .contact__message-section {
+  padding: 10px 0 55px;
+}
+
+.contact__message-layout {
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-radius: 22px;
+}
+
+.contact__message-form {
+  padding: 30px 18px 15px;
+}
+
+.contact__message-visual {
+  min-height: 290px;
+  padding: 25px 30px 45px;
+}
+
+.contact__message-image-wrapper {
+  max-width: 255px;
+  padding: 5px;
+  border: none;
+  border-radius: 15px;
+  transform: rotate(5deg);
+}
+
+.contact__message-image {
+  height: 245px;
+  border-radius: 11px;
+}
+
+.contact__message-sticker {
+  top: 0px;
+  right: 3%;
+  bottom: auto;
+
+  width: 100px;
+  min-height: 85px;
+  padding: 10px;
+
+  border-radius: 12px;
+  font-size: 12px;
+  transform: rotate(8deg);
+}
+
+.contact__message-star {
+  top: 10px;
+  left: 5%;
+  font-size: 30px;
+}
+
+  /* Preguntas frecuentes */
+
+  .contact__faq {
+    padding: 10px 0 55px;
+  }
+
+  .contact__faq-item {
+    margin-bottom: 12px;
+    border-radius: 15px;
+  }
+
+  .contact__faq-toggle {
+    gap: 10px;
+    padding: 16px 15px;
+    font-size: 13px;
+  }
+
+  .contact__faq-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 20px;
+  }
+
+  .contact__faq-answer {
+    padding: 0 15px 18px;
+  }
+
+  .contact__faq-answer p {
+    font-size: 13px;
+  }
+
+  .contact__faq-footer {
+    font-size: 13px;
+  }
+
+  .contact__faq-footer a {
+    display: block;
+    margin-left: 0;
+  }
+
+  /* CTA */
+
+  .contact__cta {
+    margin-bottom: 45px;
+    padding: 45px 18px 35px;
+    border-radius: 23px;
+  }
+
+  .contact__cta-eyebrow {
+    font-size: 16px;
+  }
+
+  .contact__cta h2 {
+    font-size: 39px;
+  }
+
+  .contact__cta p {
+    font-size: 14px;
+  }
+
+  .contact__cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .contact__cta-button {
+    width: 100%;
+    max-width: 270px;
+    font-size: 17px;
+  }
+
+  .contact__cta-decoration--star {
+    top: 10px;
+    left: 10px;
+    font-size: 23px;
+  }
+
+  .contact__cta-decoration--heart {
+    right: 10px;
+    bottom: 10px;
+    font-size: 25px;
+  }
+}
+
+/* ==========================================
+   REDUCCIÓN DE MOVIMIENTO
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__hero-button,
+  .contact__card,
+  .contact__card-link,
+  .contact__faq-item,
+  .contact__cta-button {
+    transition: none;
+  }
+}

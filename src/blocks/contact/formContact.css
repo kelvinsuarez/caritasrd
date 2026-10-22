@@ -1,0 +1,602 @@
+
+/* ==========================================
+   CARITAS RD - FORMULARIO DE CONTACTO
+   Archivo: formContact.css
+   Diseño compacto del mockup original
+========================================== */
+
+.form-contact {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  font-family: "Poppins", sans-serif;
+  color: #0b2a4a;
+}
+
+.form-contact,
+.form-contact * {
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   ENCABEZADO
+========================================== */
+
+.form-contact__heading {
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.form-contact__heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 5px;
+}
+
+.form-contact__heading-icon {
+  flex-shrink: 0;
+  color: #ec1763;
+  font-size: 43px;
+  line-height: 1;
+}
+
+.form-contact__title {
+  margin: 0;
+  color: #ec1763;
+  font-family: "Party", sans-serif;
+  font-size: clamp(30px, 3.2vw, 43px);
+  font-weight: 400;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.form-contact__heading-decoration {
+  flex-shrink: 0;
+  font-size: 28px;
+  transform: rotate(-15deg);
+}
+
+.form-contact__description {
+  margin: 8px auto 0;
+  max-width: 500px;
+  color: #4b6073;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ==========================================
+   ESTRUCTURA DEL FORMULARIO
+========================================== */
+
+.form-contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.form-contact__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+}
+
+.form-contact__field {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Etiquetas accesibles pero no visibles */
+
+.form-contact__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================
+   CONTENEDORES DE INPUTS
+========================================== */
+
+.form-contact__input-wrapper,
+.form-contact__textarea-wrapper {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.form-contact__field-icon {
+  position: absolute;
+  top: 50%;
+  left: 17px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 21px;
+  height: 21px;
+  color: #0b2a4a;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.form-contact__field-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================
+   INPUTS Y SELECT
+========================================== */
+
+.form-contact__input,
+.form-contact__select,
+.form-contact__textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  border: 1px solid #f7edf2;
+  border-radius: 14px;
+  outline: none;
+  background-color: #ffffff;
+  color: #0b2a4a;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  box-shadow: 0 3px 12px rgba(11, 42, 74, 0.035);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.form-contact__input,
+.form-contact__select {
+  height: 49px;
+  padding: 12px 15px 12px 49px;
+}
+
+.form-contact__input::placeholder,
+.form-contact__textarea::placeholder {
+  color: #7f8b99;
+  opacity: 1;
+}
+
+.form-contact__input:hover,
+.form-contact__select:hover,
+.form-contact__textarea:hover {
+  border-color: #f3bfd4;
+}
+
+.form-contact__input:focus,
+.form-contact__select:focus,
+.form-contact__textarea:focus {
+  border-color: #ec1763;
+  box-shadow: 0 0 0 3px rgba(236, 23, 99, 0.09);
+}
+
+.form-contact__input:disabled,
+.form-contact__select:disabled,
+.form-contact__textarea:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  background-color: #f8f8f8;
+}
+
+/* ==========================================
+   SELECT - TIPO DE CONSULTA
+========================================== */
+
+.form-contact__select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 42px;
+  cursor: pointer;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230b2a4a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 17px center;
+  background-size: 18px;
+}
+
+.form-contact__select:invalid {
+  color: #7f8b99;
+}
+
+.form-contact__select option {
+  color: #0b2a4a;
+  background-color: #ffffff;
+}
+
+/* ==========================================
+   TEXTAREA - MENSAJE
+========================================== */
+
+.form-contact__textarea-wrapper {
+  position: relative;
+}
+
+.form-contact__field-icon--textarea {
+  top: 19px;
+  transform: none;
+}
+
+.form-contact__textarea {
+  min-height: 112px;
+  padding: 16px 18px 31px 49px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.form-contact__counter {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  color: #66788a;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+/* ==========================================
+   BOTÓN DE ENVÍO
+========================================== */
+
+.form-contact__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 49px;
+  margin-top: 2px;
+  padding: 11px 20px;
+  border: none;
+  border-radius: 35px;
+  background: #ec1763;
+  color: #ffffff;
+  font-family: "Funny", sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.3;
+  cursor: pointer;
+  box-shadow: 0 7px 18px rgba(236, 23, 99, 0.16);
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.form-contact__submit:hover:not(:disabled) {
+  background: #d90f56;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 23px rgba(236, 23, 99, 0.23);
+}
+
+.form-contact__submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.form-contact__submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.form-contact__submit:focus-visible {
+  outline: 3px solid #0b2a4a;
+  outline-offset: 3px;
+}
+
+.form-contact__submit-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.form-contact__submit-arrow {
+  font-family: "Poppins", sans-serif;
+  font-size: 23px;
+  line-height: 1;
+}
+
+/* ==========================================
+   MENSAJE DE PRIVACIDAD
+========================================== */
+
+.form-contact__privacy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 0;
+  color: #788796;
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.form-contact__privacy span {
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   MENSAJES DE ÉXITO Y ERROR
+========================================== */
+
+.form-contact__alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.form-contact__alert > span {
+  flex-shrink: 0;
+  font-size: 21px;
+}
+
+.form-contact__alert strong {
+  display: block;
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+
+.form-contact__alert p {
+  margin: 0;
+}
+
+.form-contact__alert--success {
+  border-color: #bdebd0;
+  background: #eaf9ef;
+  color: #216743;
+}
+
+.form-contact__alert--error {
+  border-color: #ffc6d3;
+  background: #fff0f3;
+  color: #a82b49;
+}
+
+/* ==========================================
+   SPINNER DE ENVÍO
+========================================== */
+
+.form-contact__spinner {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: form-contact-spin 0.8s linear infinite;
+}
+
+@keyframes form-contact-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================
+   CAMPO ANTISPAM
+========================================== */
+
+.form-contact__honeypot,
+.form-contact__honeypot[hidden] {
+  display: none !important;
+}
+
+/* ==========================================
+   RESPONSIVE - TABLETAS
+========================================== */
+
+@media screen and (max-width: 1100px) {
+  .form-contact__heading {
+    margin-bottom: 19px;
+  }
+
+  .form-contact__title {
+    font-size: clamp(29px, 3.3vw, 39px);
+  }
+
+  .form-contact__heading-icon {
+    font-size: 36px;
+  }
+
+  .form-contact__heading-decoration {
+    font-size: 24px;
+  }
+
+  .form-contact__form {
+    gap: 12px;
+  }
+
+  .form-contact__row {
+    gap: 12px;
+  }
+
+  .form-contact__input,
+  .form-contact__select,
+  .form-contact__textarea {
+    font-size: 12px;
+  }
+
+  .form-contact__field-icon {
+    left: 13px;
+    width: 19px;
+    height: 19px;
+  }
+
+  .form-contact__input,
+  .form-contact__select {
+    padding-left: 42px;
+  }
+
+  .form-contact__textarea {
+    padding-left: 42px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE - CELULARES
+========================================== */
+
+@media screen and (max-width: 750px) {
+  .form-contact__heading {
+    margin-bottom: 23px;
+  }
+
+  .form-contact__title {
+    font-size: clamp(33px, 6vw, 43px);
+  }
+
+  .form-contact__description {
+    font-size: 13px;
+  }
+
+  .form-contact__form {
+    gap: 14px;
+  }
+
+  .form-contact__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .form-contact__input,
+  .form-contact__select {
+    height: 50px;
+  }
+
+  .form-contact__textarea {
+    min-height: 120px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE - CELULARES PEQUEÑOS
+========================================== */
+
+@media screen and (max-width: 480px) {
+  .form-contact__heading {
+    margin-bottom: 20px;
+  }
+
+  .form-contact__heading-row {
+    gap: 7px;
+  }
+
+  .form-contact__heading-icon {
+    font-size: 28px;
+  }
+
+  .form-contact__title {
+    font-size: clamp(29px, 8vw, 36px);
+  }
+
+  .form-contact__heading-decoration {
+    font-size: 19px;
+  }
+
+  .form-contact__description {
+    font-size: 11px;
+  }
+
+  .form-contact__form {
+    gap: 12px;
+  }
+
+  /* Nombre y correo en filas separadas */
+
+  .form-contact__row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .form-contact__input,
+  .form-contact__select {
+    height: 48px;
+    font-size: 12px;
+  }
+
+  .form-contact__field-icon {
+    left: 14px;
+    width: 19px;
+    height: 19px;
+  }
+
+  .form-contact__input,
+  .form-contact__select {
+    padding-left: 45px;
+  }
+
+  .form-contact__textarea {
+    min-height: 120px;
+    padding-left: 45px;
+    font-size: 12px;
+  }
+
+  .form-contact__submit {
+    min-height: 48px;
+    gap: 9px;
+    font-size: 17px;
+  }
+
+  .form-contact__submit-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .form-contact__submit-arrow {
+    font-size: 20px;
+  }
+
+  .form-contact__privacy {
+    font-size: 9px;
+    line-height: 1.6;
+  }
+
+  .form-contact__alert {
+    padding: 12px;
+    font-size: 11px;
+  }
+}
+
+/* ==========================================
+   ACCESIBILIDAD
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .form-contact__input,
+  .form-contact__select,
+  .form-contact__textarea,
+  .form-contact__submit {
+    transition: none;
+  }
+
+  .form-contact__spinner {
+    animation-duration: 1.8s;
+  }
+}
