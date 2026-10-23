@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CoverageModal from "./CoverageModal";
 import FormContact from "./FormContact";
 
 import contactHero from "../images/contact/contact-hero.jpeg";
@@ -18,7 +19,7 @@ const contactMethods = [
     title: "WhatsApp",
     description: "¡Escríbenos! Estamos felices de ayudarte.",
     linkText: "Enviar mensaje",
-    href: "https://wa.me/18090000000",
+    href: "https://wa.me/18297439113",
     className: "contact__card--whatsapp",
   },
   {
@@ -36,7 +37,7 @@ const contactMethods = [
     title: "Correo electrónico",
     description: "Para consultas y solicitudes especiales.",
     linkText: "Enviar correo",
-    href: "mailto:correo@ejemplo.com",
+    href: "mailto:d_corniel06@hotmail.com?subject=Consulta%20desde%20Caritas%20RD",
     className: "contact__card--email",
   },
   {
@@ -86,6 +87,8 @@ function Contact({ openReservation, openCotization }) {
       previous === index ? null : index
     );
   };
+
+  const [isCoverageOpen, setIsCoverageOpen] = useState(false);
 
   return (
     <main className="contact">
@@ -162,45 +165,51 @@ function Contact({ openReservation, openCotization }) {
         </div>
 
         <div className="contact__cards">
-          {contactMethods.map((method) => (
-            <article
-              key={method.id}
-              className={`contact__card ${method.className}`}
-            >
-              <div
-                className="contact__card-icon"
-                aria-hidden="true"
-              >
-                {method.icon}
-              </div>
+            {contactMethods.map((method) => (
+                <article
+                    key={method.id}
+                    className={`contact__card ${method.className}`}
+                >
+                    <div
+                        className="contact__card-icon"
+                        aria-hidden="true"
+                    >
+                        {method.icon}
+                    </div>
 
-              <h3>{method.title}</h3>
+                    <h3>{method.title}</h3>
 
-              <p>{method.description}</p>
+                    <p>{method.description}</p>
 
-              <a
-                href={method.href}
-                className="contact__card-link"
-                target={
-                  method.id === "instagram" ||
-                  method.id === "whatsapp"
-                    ? "_blank"
-                    : undefined
-                }
-                rel={
-                  method.id === "instagram" ||
-                  method.id === "whatsapp"
-                    ? "noopener noreferrer"
-                    : undefined
-                }
-              >
-                {method.linkText}
-                <span aria-hidden="true"> →</span>
-              </a>
-            </article>
-          ))}
+                    <a
+                        href={method.id === "location" ? "#coverage" : method.href}
+                        className="contact__card-link"
+                        onClick={(event) => {
+                            if (method.id === "location") {
+                                event.preventDefault();
+                                setIsCoverageOpen(true);
+                            }
+                        }}
+                        target={
+                        method.id === "instagram" ||
+                        method.id === "whatsapp"
+                            ? "_blank"
+                            : undefined
+                        }   
+                        rel={
+                            method.id === "instagram" ||
+                            method.id === "whatsapp"
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
+                    >
+                        {method.linkText}
+                        <span aria-hidden="true"> →</span>
+                    </a>
+                </article>
+            ))}
         </div>
-      </section>
+    </section>
 
 
       {/* =========================
@@ -371,6 +380,11 @@ function Contact({ openReservation, openCotization }) {
           💕
         </span>
       </section>
+
+      <CoverageModal
+        isOpen={isCoverageOpen}
+        onClose={() => setIsCoverageOpen(false)}
+    />
 
     </main>
   );

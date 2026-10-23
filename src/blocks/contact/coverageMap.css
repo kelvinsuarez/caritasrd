@@ -1,0 +1,127 @@
+.coverage-modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(11, 42, 74, 0.68);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.coverage-modal {
+  width: 100%;
+  max-width: 820px;
+  max-height: 92vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.2);
+}
+
+.coverage-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.coverage-modal__header h2 {
+  color: #0b2a4a;
+  font-family: "Party", sans-serif;
+  font-size: clamp(26px, 4vw, 38px);
+  margin: 0 0 8px;
+}
+
+.coverage-modal__header p {
+  color: #596579;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  margin: 0;
+}
+
+.coverage-modal__close {
+  border: 0;
+  background: #fff0f5;
+  color: #ec1763;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.coverage-map__instruction {
+  color: #0b2a4a;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.coverage-map__canvas {
+  height: 400px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.coverage-map__pin {
+  font-size: 29px;
+  display: block;
+  line-height: 1;
+}
+
+.coverage-map__result {
+  padding: 16px;
+  border-radius: 14px;
+  margin-top: 18px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
+
+.coverage-map__result strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.coverage-map__result p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.coverage-map__result--inside {
+  background: #e9f8ef;
+  color: #19683b;
+}
+
+.coverage-map__result--outside {
+  background: #fff4e5;
+  color: #855000;
+}
+
+.coverage-map__disclaimer {
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  color: #687589;
+  line-height: 1.6;
+  margin-top: 14px;
+}
+
+@media (max-width: 600px) {
+  .coverage-modal__overlay {
+    padding: 10px;
+  }
+
+  .coverage-modal {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .coverage-map__canvas {
+    height: 330px;
+  }
+}
