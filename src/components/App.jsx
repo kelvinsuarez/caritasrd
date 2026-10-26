@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
+import EventModal from "./EventModal";
 
 import Header from './Header.jsx';
 import Home from './Home.jsx';
@@ -32,65 +33,85 @@ function App() {
     const closeCotization = () => {
     setCotizationOpen(false);
     };
+
+    
   
-  return (
-    <div className='App'>
-      <div className='root'>
-        
-        <Header
-          openReservation = {openReservation}
-          openCotization = {openCotization}
+ return (
+  <div className="App">
+    <div className="root">
+
+      <Header
+        openReservation={openReservation}
+        openCotization={openCotization}
+      />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              openReservation={openReservation}
+              openCotization={openCotization}
+            />
+          }
         />
 
-        <Routes>
-          <Route 
-            path='/' 
-            element={
-              <Home
-                openReservation = {openReservation}
-                openCotization = {openCotization}
-              />
-            }
-          />  
-            
-          <Route
-            path="/services"
-            element={
-              <Services openCotization={openCotization} />
-            }
-          />
-          <Route
-            path="/gallery"
-            element={<Gallery />}
-          />
-          <Route
-            path="/info"
-            element={<About />}
-          />
-          <Route
-            path="/contact"
-            element={
-              <Contact
-                openReservation={openReservation}
-                openCotization={openCotization}
-              />
-            }
-          />
-        </Routes>  
-        <Footer/>
-          {reservationOpen && (
-          <FormReservation
-            closeReservation={closeReservation}
-          />
-        )}
-        {cotizationOpen && (
-            <FormCotization
-              closeCotization={closeCotization}
+        <Route
+          path="/services"
+          element={
+            <Services
+              openCotization={openCotization}
             />
-        )}
-      </div>
+          }
+        />
+
+        <Route
+          path="/gallery"
+          element={<Gallery />}
+        />
+
+        <Route
+          path="/info"
+          element={
+            <About
+              openReservation={openReservation}
+            />
+          }
+        />
+        
+        <Route
+          path="/contact"
+          element={
+            <Contact
+              openReservation={openReservation}
+              openCotization={openCotization}
+            />
+          }
+        />
+      </Routes>
+
+      <Footer />
+
+      {/* MODAL PARA AGENDAR EVENTOS */}
+      <EventModal
+        isOpen={reservationOpen}
+        onClose={closeReservation}
+        title="¡Organicemos tu fiesta!"
+        subtitle="Completa los detalles y prepararemos tu solicitud de reserva."
+      >
+        <FormReservation />
+      </EventModal>
+
+      {/* FORMULARIO DE COTIZACIONES EXISTENTE */}
+      {cotizationOpen && (
+        <FormCotization
+          closeCotization={closeCotization}
+        />
+      )}
+
     </div>
-  );
+  </div>
+);
 }
 
-export default App
+export default App;

@@ -1,0 +1,448 @@
+/* ========================================
+   CARITAS RD - VENTANAS DE FORMULARIOS
+   ======================================== */
+
+.event-modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 24px;
+  background: rgba(11, 42, 74, 0.72);
+  backdrop-filter: blur(5px);
+}
+
+.event-modal {
+  width: 100%;
+  max-width: 720px;
+  max-height: min(90vh, 900px);
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 24px 80px rgba(11, 42, 74, 0.25);
+}
+
+.event-modal__header {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+
+  padding: 30px 34px 22px;
+
+  background: linear-gradient(
+    135deg,
+    #fff0f6 0%,
+    #fff9e9 100%
+  );
+
+  border-bottom: 1px solid #f6e3eb;
+}
+
+.event-modal__eyebrow {
+  display: inline-block;
+  margin-bottom: 8px;
+
+  color: #ec1763;
+  font-family: "Funny", cursive;
+  font-size: 16px;
+}
+
+.event-modal__header h2 {
+  margin: 0 0 8px;
+
+  color: #0b2a4a;
+  font-family: "Party", sans-serif;
+  font-size: clamp(28px, 4vw, 38px);
+  line-height: 1.15;
+}
+
+.event-modal__header p {
+  max-width: 520px;
+  margin: 0;
+
+  color: #667085;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.event-modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #ffffff;
+  color: #ec1763;
+
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+
+  transition: background 0.2s, transform 0.2s;
+}
+
+.event-modal__close:hover {
+  background: #ffe2ed;
+  transform: rotate(90deg);
+}
+
+.event-modal__close:focus-visible {
+  outline: 3px solid #ec1763;
+  outline-offset: 3px;
+}
+
+.event-modal__body {
+  padding: 30px 34px 36px;
+  font-family: "Poppins", sans-serif;
+}
+
+@media (max-width: 750px) {
+  .event-modal__overlay {
+    padding: 14px;
+  }
+
+  .event-modal {
+    max-height: 94vh;
+    border-radius: 22px;
+  }
+
+  .event-modal__header {
+    padding: 24px 24px 20px;
+  }
+
+  .event-modal__body {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-modal__overlay {
+    padding: 8px;
+    align-items: center;
+  }
+
+  .event-modal {
+    max-height: 96dvh;
+    border-radius: 18px;
+  }
+
+  .event-modal__header {
+    padding: 20px 18px 16px;
+    gap: 10px;
+  }
+
+  .event-modal__header h2 {
+    font-size: 27px;
+  }
+
+  .event-modal__header p {
+    font-size: 13px;
+  }
+
+  .event-modal__close {
+    width: 36px;
+    height: 36px;
+    font-size: 26px;
+  }
+
+  .event-modal__body {
+    padding: 20px 18px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .event-modal__close {
+    transition: none;
+  }
+}
+
+/* ========================================
+   CARITAS RD - FORMULARIO DE RESERVAS
+   ======================================== */
+
+.reservation-form {
+  font-family: "Poppins", sans-serif;
+  color: #0b2a4a;
+}
+
+.reservation-form__progress {
+  margin-bottom: 28px;
+}
+
+.reservation-form__progress-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.reservation-form__progress-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #f8e4ec;
+}
+
+.reservation-form__progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: #ec1763;
+  transition: width 0.3s ease;
+}
+
+.reservation-form__progress > p {
+  margin: 8px 0 0;
+  font-size: 12px;
+  text-align: right;
+  color: #64748b;
+}
+
+.reservation-form__step h3 {
+  margin: 0 0 6px;
+  color: #ec1763;
+  font-family: "Funny", cursive;
+  font-size: 25px;
+}
+
+.reservation-form__step > p {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.reservation-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  margin-bottom: 20px;
+}
+
+.reservation-form__field label,
+.reservation-form__services legend {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0b2a4a;
+}
+
+.reservation-form__field input,
+.reservation-form__field select,
+.reservation-form__field textarea {
+  width: 100%;
+  min-height: 48px;
+  box-sizing: border-box;
+  padding: 12px 14px;
+
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  outline: none;
+
+  background: #ffffff;
+  color: #0b2a4a;
+  font: inherit;
+  font-size: 14px;
+
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.reservation-form__field textarea {
+  resize: vertical;
+}
+
+.reservation-form__field input:focus,
+.reservation-form__field select:focus,
+.reservation-form__field textarea:focus {
+  border-color: #ec1763;
+  box-shadow: 0 0 0 3px rgba(236, 23, 99, 0.1);
+}
+
+.reservation-form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.reservation-form__services {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  margin: 0 0 22px;
+  padding: 18px;
+
+  border: 1.5px solid #f6dce7;
+  border-radius: 14px;
+  background: #fff8fb;
+}
+
+.reservation-form__services legend {
+  padding: 0 6px;
+}
+
+.reservation-form__services label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.reservation-form__services input,
+.reservation-form__consent input {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  accent-color: #ec1763;
+}
+
+.reservation-form__schedule {
+  margin: -6px 0 20px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fff0b3;
+  font-size: 13px;
+}
+
+.reservation-form__notice {
+  margin: 12px 0 20px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #fff4d8;
+  color: #0b2a4a;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.reservation-form__summary {
+  margin-bottom: 24px;
+  padding: 20px;
+  border: 1px solid #f6dce7;
+  border-radius: 16px;
+  background: #fff8fb;
+}
+
+.reservation-form__summary p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.reservation-form__summary p:last-child {
+  margin-bottom: 0;
+}
+
+.reservation-form__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 20px 0 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.reservation-form__consent input {
+  margin-top: 3px;
+}
+
+.reservation-form__error {
+  color: #c62828;
+  font-size: 12px;
+}
+
+.reservation-form__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #f1e5ea;
+}
+
+.reservation-form__actions button {
+  min-height: 46px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 30px;
+  font-family: "Funny", cursive;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.reservation-form__actions button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.reservation-form__back {
+  background: #eef3f9;
+  color: #0b2a4a;
+}
+
+.reservation-form__next,
+.reservation-form__submit {
+  background: #ec1763;
+  color: #ffffff;
+}
+
+.reservation-form__actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.reservation-form__success {
+  padding: 32px 12px;
+  text-align: center;
+}
+
+.reservation-form__success h3 {
+  color: #ec1763;
+  font-family: "Funny", cursive;
+  font-size: 28px;
+}
+
+@media (max-width: 480px) {
+  .reservation-form__row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .reservation-form__progress-labels {
+    font-size: 10px;
+  }
+
+  .reservation-form__step h3 {
+    font-size: 22px;
+  }
+
+  .reservation-form__actions button {
+    padding: 11px 16px;
+    font-size: 14px;
+  }
+
+  .reservation-form__summary {
+    padding: 16px;
+  }
+}
