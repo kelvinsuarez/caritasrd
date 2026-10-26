@@ -15,6 +15,7 @@ const initialForm = {
   birthdayAge: "",
   notes: "",
   accepted: false,
+  photoAuthorization: "",
 };
 
 const serviceOptions = [
@@ -135,10 +136,22 @@ export default function FormReservation() {
       ) {
         nextErrors.childrenCount = "Introduce una cantidad válida.";
       }
+      if (step === 3 && !form.photoAuthorization) {
+  nextErrors.photoAuthorization =
+    "Selecciona Sí o No para continuar.";
+}
     }
 
-    if (step === 3 && !form.accepted) {
-      nextErrors.accepted = "Debes autorizar el uso de tus datos.";
+    if (step === 3) {
+      if (!form.accepted) {
+        nextErrors.accepted =
+          "Debes autorizar el uso de tus datos.";
+      }
+
+      if (!["si", "no"].includes(form.photoAuthorization)) {
+        nextErrors.photoAuthorization =
+          "Debes seleccionar Sí o No para continuar.";
+      }
     }
 
     setErrors(nextErrors);
@@ -526,6 +539,48 @@ export default function FormReservation() {
             </span>
           </label>
 
+          <div className="reservation-form__field">
+          <label>
+            ¿Estaría de acuerdo con el uso de fotografías y videos de los
+            participantes de la actividad para su publicación
+            en las páginas oficiales de Caritas_RD? *
+          </label>
+
+          <div className="reservation-form__photo-options">
+          <label>
+          <input
+            type="radio"
+            name="photoAuthorization"
+            value="si"
+            checked={form.photoAuthorization === "si"}
+            onChange={(e) =>
+              updateField("photoAuthorization", e.target.value)
+            }
+          />
+            Sí
+          </label>
+
+          <label>
+             <input
+                type="radio"
+                name="photoAuthorization"
+                value="no"
+                checked={form.photoAuthorization === "no"}
+                onChange={(e) =>
+                    updateField("photoAuthorization", e.target.value)
+                }
+             />
+               No
+             </label>
+          </div>
+
+  {errors.photoAuthorization && (
+    <small className="reservation-form__error">
+      {errors.photoAuthorization}
+    </small>
+  )}
+</div>
+
           {errors.accepted && (
             <small className="reservation-form__error">
               {errors.accepted}
@@ -533,7 +588,7 @@ export default function FormReservation() {
           )}
 
           <div className="reservation-form__notice">
-            💗 Esta solicitud no confirma automáticamente
+             Esta solicitud no confirma automáticamente
             tu reserva. Nuestro equipo se comunicará
             contigo para validar disponibilidad.
           </div>
@@ -565,9 +620,12 @@ export default function FormReservation() {
           <button
             type="submit"
             className="reservation-form__submit"
-            disabled={!form.accepted}
-          >
-            Revisar solicitud 💕
+            disabled={
+                !form.accepted ||
+                !["si", "no"].includes(form.photoAuthorization)
+                }
+        >
+            Revisar solicitud
           </button>
         )}
       </div>
