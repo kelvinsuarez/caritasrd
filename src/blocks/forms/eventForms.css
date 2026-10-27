@@ -415,6 +415,7 @@
 .reservation-form__success {
   padding: 32px 12px;
   text-align: center;
+  color: #0b2a4a;
 }
 
 .reservation-form__success h3 {
@@ -422,6 +423,7 @@
   font-family: "Funny", cursive;
   font-size: 28px;
 }
+
 
 @media (max-width: 480px) {
   .reservation-form__row {

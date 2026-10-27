@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const initialForm = {
   fullName: "",
@@ -21,7 +21,7 @@ const initialForm = {
 const serviceOptions = [
   "Pintacaritas",
   "Hair Party",
-  "Stan de glitter para adultos",
+  "Stand de glitter para adultos",
   "Otros servicios",
 ];
 
@@ -61,8 +61,90 @@ export default function FormReservation() {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [availability, setAvailability] = useState(null);
+  const [checkingAvailability, setCheckingAvailability] = useState(false);
+
+  useEffect(() => {
+  const eventDate = form.eventDate;
+  const startTime = form.startTime;
+  const duration = form.duration;
+
+  if (
+    !eventDate ||
+    !startTime ||
+    !duration ||
+    eventDate < getToday()
+  ) {
+    return;
+  }
+
+  const controller = new AbortController();
+
+  const timer = setTimeout(async () => {
+    setCheckingAvailability(true);
+    setAvailability(null);
+
+    try {
+      const params = new URLSearchParams({
+        date: eventDate,
+        time: startTime,
+        duration: duration,
+      });
+
+      const response = await fetch(
+        `/api/check-availability?${params.toString()}`,
+        { signal: controller.signal }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok || !result.ok) {
+        throw new Error(
+          "No pudimos consultar la disponibilidad."
+        );
+      }
+
+      if (!controller.signal.aborted) {
+        setAvailability(result);
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.error(
+          "Error consultando disponibilidad:",
+          error
+        );
+
+        if (!controller.signal.aborted) {
+          setAvailability({
+            ok: false,
+            message:
+              "No pudimos verificar la disponibilidad. " +
+              "Puedes continuar con tu solicitud.",
+          });
+        }
+      }
+    } finally {
+      if (!controller.signal.aborted) {
+        setCheckingAvailability(false);
+      }
+    }
+  }, 400);
+
+  return () => {
+    clearTimeout(timer);
+    controller.abort();
+  };
+}, [form.eventDate, form.startTime, form.duration]);
 
   const updateField = (field, value) => {
+    
+    if (
+      ["eventDate", "startTime", "duration"].includes(field)
+    ) {
+      setAvailability(null);
+      setCheckingAvailability(false);
+    }
+
     setForm((previous) => ({
       ...previous,
       [field]: value,
@@ -169,21 +251,43 @@ export default function FormReservation() {
     setStep((previous) => Math.max(previous - 1, 1));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!validateStep()) return;
 
-    // Próximo paso:
-    // Enviar la solicitud a nuestra función segura
-    // y guardarla en Supabase.
+    try {
+      const response = await fetch("/api/create-reservation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
 
-    console.log("Solicitud preparada:", form);
+      const result = await response.json();
 
-    // Todavía no mostramos confirmación de envío,
-    // porque no existe una conexión al servidor.
+      if (!response.ok || !result.ok) {
+        throw new Error(
+        result.error || "No pudimos enviar tu solicitud."
+      );
+    }
+
+    console.log("Reservación registrada:", result.reservationId);
+
+    setSubmitted(true);
+  } catch (error) {
+    console.error("Error al enviar reservación:", error);
+
+    alert(
+      "No pudimos enviar tu solicitud en este momento. " +
+      "Por favor, inténtalo nuevamente."
+    );
+
     setSubmitted(false);
-  };
+  }
+  
+};
 
   if (submitted) {
     return (
@@ -385,6 +489,30 @@ export default function FormReservation() {
               {getEndTime(form.startTime, form.duration)}
             </p>
           )}
+
+          {form.eventDate && form.startTime && (
+  <div
+    className="reservation-form__notice"
+    role="status"
+    aria-live="polite"
+  >
+    {checkingAvailability ? (
+      <span>⏳ Consultando disponibilidad...</span>
+    ) : availability?.ok && availability.available ? (
+      <span>
+        ✅ ¡Tenemos disponibilidad preliminar para
+        tu celebración!
+      </span>
+    ) : availability?.ok && !availability.available ? (
+      <span>
+        📅 No tenemos equipos disponibles para ese
+        horario. Puedes elegir otra hora o fecha.
+      </span>
+    ) : availability?.ok === false ? (
+      <span>{availability.message}</span>
+    ) : null}
+  </div>
+)}
 
           <fieldset className="reservation-form__services">
             <legend>Servicios que deseas contratar *</legend>

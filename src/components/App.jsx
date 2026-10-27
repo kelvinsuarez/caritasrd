@@ -11,6 +11,7 @@ import Contact from "./Contact";
 import FormReservation from './FormReservation.jsx';
 import FormCotization from './FormCotization.jsx';
 import Footer from './Footer.jsx';
+import AdminLogin from "./AdminLogin";
 
 import '../index.css';
 
@@ -88,6 +89,18 @@ function App() {
             />
           }
         />
+
+        <Route
+          path="/admin"
+          element={
+            <AdminLogin
+              onLogin={() => {
+              window.location.href = "/admin/dashboard";
+              }}
+            />
+          }
+        />  
+
       </Routes>
 
       <Footer />
