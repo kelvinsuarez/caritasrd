@@ -1,0 +1,468 @@
+/* =========================================
+   CARITAS RD - CALENDARIO ADMINISTRATIVO
+========================================= */
+
+/* Contenedor principal */
+
+.admin-calendar {
+  width: 100%;
+  min-width: 0;
+  margin: 32px 0;
+  padding: 24px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #f5dce6;
+  border-radius: 16px;
+  box-shadow: 0 5px 18px rgba(11, 42, 74, 0.04);
+}
+
+/* =========================================
+   ENCABEZADO
+========================================= */
+
+.admin-calendar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-calendar__title {
+  margin: 0;
+  color: #0b2a4a;
+  font-family: "Party", cursive;
+  font-size: 28px;
+  line-height: 1.3;
+}
+
+/* =========================================
+   NAVEGACIÓN ENTRE MESES
+========================================= */
+
+.admin-calendar__navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.admin-calendar__navigation span {
+  min-width: 150px;
+  text-align: center;
+  color: #0b2a4a;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.admin-calendar__navigation button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid #f5dce6;
+  border-radius: 10px;
+  background: #fff0f5;
+  color: #ec1763;
+  font-size: 26px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-calendar__navigation button:hover {
+  background: #fbd6e4;
+  border-color: #ec1763;
+}
+
+/* =========================================
+   CUADRÍCULA DEL CALENDARIO
+========================================= */
+
+.admin-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.admin-calendar__weekday {
+  padding: 10px 0;
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.admin-calendar__empty-day {
+  min-width: 0;
+}
+
+/* =========================================
+   DÍAS DEL CALENDARIO
+========================================= */
+
+.admin-calendar__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  min-height: 72px;
+  padding: 8px 4px;
+  border: 1px solid #e9edf2;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0b2a4a;
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-calendar__day:hover {
+  background: #fff0f5;
+  border-color: #ec1763;
+}
+
+/* Día seleccionado */
+
+.admin-calendar__day--selected {
+  background: #fff0f5;
+  border-color: #ec1763;
+  box-shadow: inset 0 0 0 1px #ec1763;
+}
+
+/* Accesibilidad */
+
+.admin-calendar__day:focus-visible,
+.admin-calendar__navigation button:focus-visible {
+  outline: 2px solid #0b2a4a;
+  outline-offset: 2px;
+}
+
+/* =========================================
+   CONTADOR DE RESERVACIONES
+========================================= */
+
+.admin-calendar__count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background: #ec1763;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================================
+   INDICADORES DE ESTADOS
+========================================= */
+
+.admin-calendar__status-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.admin-calendar__status-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #64748b;
+}
+
+/* Pendiente - Rosa */
+
+.admin-calendar__status-dot--pendiente {
+  background: #ec1763;
+}
+
+/* En revisión - Azul */
+
+.admin-calendar__status-dot--en_revision {
+  background: #3976c7;
+}
+
+/* Confirmada - Verde */
+
+.admin-calendar__status-dot--confirmada {
+  background: #16805d;
+}
+
+/* Completada - Dorado */
+
+.admin-calendar__status-dot--completada {
+  background: #a36a00;
+}
+
+/* Cancelada - Gris */
+
+.admin-calendar__status-dot--cancelada {
+  background: #64748b;
+}
+
+/* =========================================
+   LEYENDA DE ESTADOS
+========================================= */
+
+.admin-calendar__legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 28px;
+  row-gap: 16px;
+  width: 100%;
+  margin-top: 24px;
+  padding: 20px 14px;
+  box-sizing: border-box;
+  border-top: 1px solid #f5dce6;
+}
+
+/* Cada elemento de la leyenda */
+
+.admin-calendar__legend-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  gap: 9px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+/* Puntos de colores de la leyenda */
+
+.admin-calendar__legend-item .admin-calendar__status-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+}
+
+/* =========================================
+   LISTA DE EVENTOS DEL DÍA
+========================================= */
+
+.admin-calendar__events {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #f5dce6;
+}
+
+.admin-calendar__events h3 {
+  margin: 0 0 18px;
+  color: #0b2a4a;
+  font-size: 18px;
+}
+
+.admin-calendar__events > p {
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* =========================================
+   EVENTO INDIVIDUAL
+========================================= */
+
+.admin-calendar__event {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+  padding: 16px;
+  border: 1px solid #e9edf2;
+  border-radius: 12px;
+  background: #fffafd;
+}
+
+.admin-calendar__event strong {
+  display: block;
+  color: #0b2a4a;
+  overflow-wrap: anywhere;
+}
+
+.admin-calendar__event p {
+  margin: 6px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* =========================================
+   RESPONSIVE - TABLETAS
+========================================= */
+
+@media (max-width: 768px) {
+  .admin-calendar {
+    padding: 18px 14px;
+  }
+
+  .admin-calendar__title {
+    font-size: 24px;
+  }
+
+  .admin-calendar__grid {
+    gap: 5px;
+  }
+
+  .admin-calendar__day {
+    min-height: 60px;
+  }
+
+  .admin-calendar__legend {
+    column-gap: 22px;
+    row-gap: 14px;
+  }
+}
+
+/* =========================================
+   RESPONSIVE - CELULARES
+========================================= */
+
+@media (max-width: 600px) {
+  .admin-calendar {
+    margin: 24px 0;
+    padding: 16px 10px;
+  }
+
+  /* Encabezado */
+
+  .admin-calendar__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .admin-calendar__title {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  /* Navegación */
+
+  .admin-calendar__navigation {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .admin-calendar__navigation span {
+    min-width: 130px;
+    font-size: 14px;
+  }
+
+  /* Cuadrícula */
+
+  .admin-calendar__grid {
+    gap: 4px;
+  }
+
+  .admin-calendar__weekday {
+    font-size: 11px;
+  }
+
+  .admin-calendar__day {
+    min-height: 48px;
+    padding: 6px 2px;
+    border-radius: 7px;
+    font-size: 13px;
+    gap: 3px;
+  }
+
+  /* Contadores */
+
+  .admin-calendar__count {
+    min-width: 19px;
+    height: 19px;
+    padding: 0 3px;
+    font-size: 10px;
+  }
+
+  .admin-calendar__status-dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  /* Leyenda */
+
+  .admin-calendar__legend {
+    justify-content: flex-start;
+    column-gap: 22px;
+    row-gap: 16px;
+    margin-top: 20px;
+    padding: 18px 10px;
+  }
+
+  .admin-calendar__legend-item {
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .admin-calendar__legend-item .admin-calendar__status-dot {
+    width: 9px;
+    height: 9px;
+  }
+
+  /* Eventos */
+
+  .admin-calendar__event {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .admin-calendar__event .admin-dashboard__details-button {
+    width: 100%;
+  }
+}
+
+/* =========================================
+   RESPONSIVE - CELULARES MUY PEQUEÑOS
+========================================= */
+
+@media (max-width: 340px) {
+  .admin-calendar {
+    padding: 12px 6px;
+  }
+
+  .admin-calendar__grid {
+    gap: 2px;
+  }
+
+  .admin-calendar__day {
+    min-height: 44px;
+    font-size: 12px;
+  }
+
+  .admin-calendar__legend {
+    column-gap: 18px;
+    row-gap: 14px;
+    padding: 16px 6px;
+  }
+
+  .admin-calendar__legend-item {
+    font-size: 11px;
+  }
+}

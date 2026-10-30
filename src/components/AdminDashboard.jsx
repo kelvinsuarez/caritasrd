@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 import ReservationDetails from "./ReservationDetails";
+import AdminCalendar from "./AdminCalendar";
 
 const summaryCards = [
   { label: "Total de solicitudes", key: "total", icon: "📋", className: "total" },
@@ -156,6 +157,11 @@ export default function AdminDashboard() {
             </p>
           )}
         </div>
+
+         <AdminCalendar
+          reservations={reservations}
+          onViewDetails={setSelectedReservation}
+        />
 
         {reservations.length > 0 && (
           <section className="admin-dashboard__reservations">
