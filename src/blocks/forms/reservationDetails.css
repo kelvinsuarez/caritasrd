@@ -1,0 +1,428 @@
+/* =====================================
+   CARITAS RD - DETALLES DE RESERVACION
+===================================== */
+
+.reservation-details__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(11, 42, 74, 0.65);
+  box-sizing: border-box;
+}
+
+.reservation-details__modal {
+  width: 100%;
+  max-width: 720px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  color: #0b2a4a;
+}
+
+.reservation-details__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+  background: #fff0f5;
+  border-radius: 18px 18px 0 0;
+}
+
+.reservation-details__header h2 {
+  margin: 0 0 8px;
+  color: #0b2a4a;
+  font-family: "Party", cursive;
+}
+
+.reservation-details__header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.reservation-details__close {
+  border: none;
+  background: transparent;
+  color: #0b2a4a;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.reservation-details__body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding: 24px;
+}
+
+.reservation-details__field {
+  min-width: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #edf0f4;
+}
+
+.reservation-details__label {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.reservation-details__value {
+  display: block;
+  color: #0b2a4a;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.reservation-details__footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 24px;
+  border-top: 1px solid #edf0f4;
+}
+
+.reservation-details__button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  background: #ec1763;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reservation-details__button:hover {
+  background: #ca1253;
+}
+
+/* Celulares */
+
+@media (max-width: 600px) {
+  .reservation-details__overlay {
+    padding: 12px;
+  }
+
+  .reservation-details__header {
+    padding: 20px 16px;
+  }
+
+  .reservation-details__body {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 20px 16px;
+  }
+
+  .reservation-details__footer {
+    padding: 16px;
+  }
+}
+
+/* =====================================
+   GESTIÓN DE ESTADOS
+===================================== */
+
+.reservation-details__management {
+  padding: 24px;
+  border-top: 1px solid #edf0f4;
+  background: #fffafd;
+}
+
+.reservation-details__management h3 {
+  margin: 0 0 18px;
+  color: #0b2a4a;
+  font-size: 18px;
+}
+
+.reservation-details__management-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #0b2a4a;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.reservation-details__management-select {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 1px solid #dce3ec;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0b2a4a;
+  font-size: 14px;
+}
+
+.reservation-details__save-button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  background: #ec1763;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reservation-details__save-button:hover:not(:disabled) {
+  background: #ca1253;
+}
+
+.reservation-details__save-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.reservation-details__message {
+  margin-top: 14px;
+  color: #16805d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.reservation-details__message--error {
+  color: #c62828;
+}
+
+.reservation-details__notice {
+  margin-top: 14px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .reservation-details__management {
+    padding: 20px 16px;
+  }
+
+  .reservation-details__management-select {
+    max-width: none;
+  }
+}
+
+/* =====================================
+   DISPONIBILIDAD DE EQUIPOS
+===================================== */
+
+.reservation-details__teams {
+  padding: 24px;
+  border-top: 1px solid #edf0f4;
+  background: #ffffff;
+}
+
+.reservation-details__teams h3 {
+  margin: 0 0 10px;
+  color: #0b2a4a;
+  font-size: 18px;
+}
+
+.reservation-details__teams-description {
+  margin: 0 0 18px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.reservation-details__check-button {
+  padding: 12px 18px;
+  border: 1px solid #ec1763;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #ec1763;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reservation-details__check-button:hover:not(:disabled) {
+  background: #fff0f5;
+}
+
+.reservation-details__check-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.reservation-details__teams-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.reservation-details__team-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.reservation-details__team-option:has(input:checked) {
+  border-color: #ec1763;
+  background: #fff7fa;
+}
+
+.reservation-details__team-option:has(input:disabled) {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.reservation-details__team-name {
+  flex: 1;
+  color: #0b2a4a;
+  font-weight: 600;
+}
+
+.reservation-details__team-status {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.reservation-details__team-status--available {
+  color: #16805d;
+}
+
+.reservation-details__team-status--busy {
+  color: #c62828;
+}
+
+.reservation-details__team-notice {
+  margin-top: 16px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .reservation-details__teams {
+    padding: 20px 16px;
+  }
+
+  .reservation-details__team-option {
+    flex-wrap: wrap;
+  }
+}
+
+/* Confirmación de reservaciones */
+
+.reservation-details__confirm-button {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  margin-top: 20px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #16805d;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reservation-details__confirm-button:hover:not(:disabled) {
+  background: #116b4e;
+}
+
+.reservation-details__confirm-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.reservation-details__confirm-button:focus-visible {
+  outline: 2px solid #0b2a4a;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .reservation-details__confirm-button {
+    max-width: none;
+  }
+}
+
+/* Equipo asignado a una reservación confirmada */
+
+.reservation-details__assigned-team {
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  background: #f0faf5;
+  border: 1px solid #ccebdd;
+  border-radius: 12px;
+}
+
+.reservation-details__assigned-team h3 {
+  margin: 0 0 10px;
+  color: #116b4e;
+  font-size: 16px;
+}
+
+.reservation-details__assigned-team p {
+  margin: 0;
+  color: #174a38;
+  font-size: 15px;
+}
+
+/* Resumen de gestión de reservaciones */
+
+.reservation-details__status-summary {
+  padding: 16px 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.reservation-details__status-summary p {
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+
+.reservation-details__status-summary p:last-child {
+  margin-bottom: 0;
+}
+
+.reservation-details__status-confirmed {
+  color: #16805d;
+  font-weight: 700;
+}
+
+/* Botón para completar eventos */
+
+.reservation-details__complete-button {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #16805d;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reservation-details__complete-button:hover:not(:disabled) {
+  background: #116b4e;
+}
+
+.reservation-details__complete-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.reservation-details__complete-button:focus-visible {
+  outline: 2px solid #0b2a4a;
+  outline-offset: 3px;
+}

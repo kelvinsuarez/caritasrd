@@ -12,6 +12,7 @@ import FormReservation from './FormReservation.jsx';
 import FormCotization from './FormCotization.jsx';
 import Footer from './Footer.jsx';
 import AdminLogin from "./AdminLogin";
+import AdminDashboard from "./AdminDashboard";
 
 import '../index.css';
 
@@ -99,7 +100,12 @@ function App() {
               }}
             />
           }
-        />  
+        />
+
+        <Route
+          path="/admin/dashboard"
+          element={<AdminDashboard />}
+        />
 
       </Routes>
 

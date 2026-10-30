@@ -11,3 +11,5 @@
 @import url(./blocks/contact/coverageMap.css);
 @import url(./blocks/forms/eventForms.css);
 @import url(./blocks/forms/adminLogin.css);
+@import url(./blocks/forms/adminDashboard.css);
+@import url(./blocks/forms/reservationDetails.css);

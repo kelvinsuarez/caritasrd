@@ -1,0 +1,568 @@
+/* =========================================
+   CARITAS RD - PANEL ADMINISTRATIVO
+========================================= */
+
+/* Contenedor principal */
+
+.admin-dashboard {
+  min-height: 100vh;
+  width: 100%;
+  min-width: 0;
+  padding: 48px 24px;
+  box-sizing: border-box;
+  background: #fff7fa;
+  color: #0b2a4a;
+}
+
+.admin-dashboard__container {
+  width: 100%;
+  max-width: 1000px;
+  min-width: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Título principal */
+
+.admin-dashboard__title {
+  color: #0b2a4a;
+  font-family: "Party", cursive;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   TARJETAS DE INDICADORES
+========================================= */
+
+.admin-dashboard__summary {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 180px), 1fr)
+  );
+  gap: 16px;
+  width: 100%;
+  min-width: 0;
+  margin: 28px 0;
+}
+
+.admin-dashboard__summary-card {
+  min-width: 0;
+  padding: 22px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #f5dce6;
+  border-radius: 16px;
+  box-shadow: 0 5px 18px rgba(11, 42, 74, 0.04);
+}
+
+.admin-dashboard__summary-label {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  overflow-wrap: anywhere;
+}
+
+.admin-dashboard__summary-value {
+  font-size: 32px;
+  margin: 0;
+}
+
+/* Colores de indicadores */
+
+.admin-dashboard__summary-value--total {
+  color: #0b2a4a;
+}
+
+.admin-dashboard__summary-value--pending {
+  color: #ec1763;
+}
+
+.admin-dashboard__summary-value--confirmed {
+  color: #16805d;
+}
+
+.admin-dashboard__summary-value--completed {
+  color: #a36a00;
+}
+
+/* =========================================
+   BOTONES Y ACCIONES
+========================================= */
+
+.admin-dashboard__actions {
+  min-width: 0;
+  margin-top: 28px;
+}
+
+.admin-dashboard__button {
+  max-width: 100%;
+  padding: 12px 22px;
+  color: #ffffff;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  white-space: normal;
+}
+
+.admin-dashboard__button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Botón actualizar */
+
+.admin-dashboard__button--refresh {
+  background: #ec1763;
+}
+
+.admin-dashboard__button--refresh:hover:not(:disabled) {
+  background: #ca1253;
+}
+
+/* Botón cerrar sesión */
+
+.admin-dashboard__button--logout {
+  margin-top: 28px;
+  background: #0b2a4a;
+}
+
+.admin-dashboard__button--logout:hover {
+  background: #154a70;
+}
+
+/* Mensajes del sistema */
+
+.admin-dashboard__feedback {
+  margin-top: 16px;
+  color: #0b2a4a;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   SECCIÓN DE RESERVACIONES
+========================================= */
+
+.admin-dashboard__reservations {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-top: 32px;
+  padding: 24px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #f5dce6;
+  border-radius: 16px;
+}
+
+.admin-dashboard__section-title {
+  color: #0b2a4a;
+  font-family: "Party", cursive;
+  margin-bottom: 20px;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   BUSCADOR Y FILTROS
+========================================= */
+
+.admin-dashboard__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 16px;
+  min-width: 0;
+  margin-bottom: 20px;
+}
+
+.admin-dashboard__filter-field {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.admin-dashboard__filter-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #0b2a4a;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-dashboard__search,
+.admin-dashboard__select {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 13px 16px;
+  border: 1px solid #dce3ec;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0b2a4a;
+  font: inherit;
+  font-size: 14px;
+}
+
+.admin-dashboard__search {
+  max-width: 420px;
+}
+
+.admin-dashboard__select {
+  max-width: 280px;
+  cursor: pointer;
+}
+
+/* Efecto al seleccionar campos */
+
+.admin-dashboard__search:focus,
+.admin-dashboard__select:focus {
+  outline: 2px solid #ec1763;
+  outline-offset: 2px;
+}
+
+/* =========================================
+   TABLA DE RESERVACIONES
+========================================= */
+
+/* Desplazamiento horizontal independiente */
+
+.admin-dashboard__table-scroll {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.admin-dashboard__table {
+  width: 100%;
+  min-width: 750px;
+  border-collapse: collapse;
+  text-align: left;
+  color: #0b2a4a;
+  background: #ffffff;
+}
+
+/* Encabezados */
+
+.admin-dashboard__table thead tr {
+  background: #fff0f5;
+}
+
+.admin-dashboard__table th {
+  padding: 14px;
+  color: #0b2a4a;
+  font-size: 14px;
+}
+
+/* Filas */
+
+.admin-dashboard__table tbody tr {
+  border-bottom: 1px solid #e9edf2;
+}
+
+/* Celdas */
+
+.admin-dashboard__table td {
+  padding: 14px;
+  color: #0b2a4a;
+  vertical-align: middle;
+}
+
+/* =========================================
+   ESTADOS DE RESERVACIÓN
+========================================= */
+
+.admin-dashboard__status {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #fff4d6;
+  color: #0b2a4a;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.admin-dashboard__status--confirmada {
+  background: #e7f7ee;
+}
+
+.admin-dashboard__status--completada {
+  background: #fff0d5;
+  color: #865400;
+}
+
+.admin-dashboard__status--cancelada {
+  background: #fdecec;
+}
+
+.admin-dashboard__status--en_revision {
+  background: #eaf2ff;
+}
+
+/* =========================================
+   BOTÓN VER DETALLES
+========================================= */
+
+.admin-dashboard__details-button {
+  display: inline-block;
+  padding: 9px 14px;
+  border: 1px solid #ec1763;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #ec1763;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.admin-dashboard__details-button:hover {
+  background: #ec1763;
+  color: #ffffff;
+}
+
+.admin-dashboard__details-button:focus-visible {
+  outline: 2px solid #0b2a4a;
+  outline-offset: 3px;
+}
+
+/* =========================================
+   MENSAJE SIN RESULTADOS
+========================================= */
+
+.admin-dashboard__table td.admin-dashboard__empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: #64748b;
+  background: #ffffff;
+}
+
+.admin-dashboard__empty-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.admin-dashboard__empty strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #0b2a4a;
+}
+
+.admin-dashboard__empty span {
+  display: block;
+}
+
+/* =========================================
+   ACCESIBILIDAD
+========================================= */
+
+.admin-dashboard__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================================
+   RESPONSIVE - TABLETAS
+========================================= */
+
+@media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 32px 18px;
+  }
+
+  .admin-dashboard__reservations {
+    padding: 20px 16px;
+  }
+
+  .admin-dashboard__filters {
+    gap: 12px;
+  }
+
+  .admin-dashboard__filter-field {
+    flex: 1 1 220px;
+  }
+
+  .admin-dashboard__search,
+  .admin-dashboard__select {
+    max-width: 100%;
+  }
+}
+
+/* =========================================
+   RESPONSIVE - CELULARES
+========================================= */
+
+@media (max-width: 600px) {
+  .admin-dashboard {
+    padding: 20px 12px;
+    min-width: 0;
+  }
+
+  .admin-dashboard__container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  /* Título adaptable */
+
+  .admin-dashboard__title {
+    font-size: clamp(20px, 5vw, 28px);
+    line-height: 1.3;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  /* Tarjetas en dos columnas */
+
+  .admin-dashboard__summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    margin: 20px 0;
+  }
+
+  .admin-dashboard__summary-card {
+    min-width: 0;
+    padding: 14px 12px;
+    border-radius: 12px;
+  }
+
+  .admin-dashboard__summary-label {
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+  }
+
+  .admin-dashboard__summary-value {
+    font-size: 26px;
+  }
+
+  /* Botones */
+
+  .admin-dashboard__actions {
+    width: 100%;
+  }
+
+  .admin-dashboard__button--refresh {
+    width: 100%;
+  }
+
+  .admin-dashboard__button--logout {
+    width: 100%;
+  }
+
+  /* Sección de reservaciones */
+
+  .admin-dashboard__reservations {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 18px 12px;
+  }
+
+  .admin-dashboard__section-title {
+    font-size: clamp(20px, 5vw, 26px);
+    line-height: 1.3;
+  }
+
+  /* Buscador y filtros */
+
+  .admin-dashboard__filters {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .admin-dashboard__filter-field {
+    flex: 0 1 auto;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .admin-dashboard__search,
+  .admin-dashboard__select {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  /* Tabla desplazable */
+
+  .admin-dashboard__table-scroll {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border: 1px solid #e9edf2;
+    border-radius: 10px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  .admin-dashboard__table {
+    min-width: 750px;
+  }
+
+  .admin-dashboard__table th,
+  .admin-dashboard__table td {
+    padding: 12px;
+    white-space: nowrap;
+  }
+}
+
+/* =========================================
+   RESPONSIVE - CELULARES MUY PEQUEÑOS
+========================================= */
+
+@media (max-width: 340px) {
+  .admin-dashboard {
+    padding: 16px 8px;
+  }
+
+  .admin-dashboard__summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .admin-dashboard__summary-card {
+    padding: 10px 8px;
+  }
+
+  .admin-dashboard__summary-label {
+    font-size: 11px;
+  }
+
+  .admin-dashboard__summary-value {
+    font-size: 24px;
+  }
+
+  .admin-dashboard__reservations {
+    padding: 14px 8px;
+  }
+}
