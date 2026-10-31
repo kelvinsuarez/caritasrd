@@ -109,6 +109,48 @@ export default function AdminDashboard() {
     window.location.replace("/admin");
   }
 
+  async function handleTestEmail() {
+    const confirmed = window.confirm(
+      "¿Deseas enviar un correo de prueba de Caritas RD?"
+    );
+
+    if (!confirmed) return;
+
+    setTesting(true);
+    setTestResult("");
+
+    try {
+      const { data, error } = await supabase.auth.getSession();
+
+      if (error || !data.session) {
+        throw new Error("No hay una sesión administrativa activa.");
+      }
+
+      const response = await fetch("/api/test-email", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${data.session.access_token}`,
+        },
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.ok) {
+        throw new Error(
+          result.error || "No se pudo enviar el correo."
+        );
+      }
+
+      setTestResult(
+        "¡Resend aceptó el correo de prueba! Revisa tu bandeja de entrada."
+      );
+    } catch (error) {
+      setTestResult(`Error enviando correo: ${error.message}`);
+    } finally {
+      setTesting(false);
+    }
+  }
+
   if (status === "verificando") {
     return (
       <main className="admin-dashboard admin-dashboard--loading">
@@ -124,6 +166,15 @@ export default function AdminDashboard() {
   return (
     <>
     <main className="admin-dashboard">
+        <div style={{ margin: "16px 0" }}>
+  <button
+    type="button"
+    onClick={handleTestEmail}
+    disabled={testing}
+  >
+    {testing ? "Procesando..." : "📧 Enviar correo de prueba"}
+  </button>
+</div>
       <div className="admin-dashboard__container">
         <h1 className="admin-dashboard__title">
           🎨 Panel administrativo de Caritas_RD
