@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { Resend } from "resend";
 
 const allowedEventTypes = new Set([
   "Cumpleaños infantil",
@@ -185,6 +186,81 @@ export default async function handler(request) {
       return respond(
         { error: "No se pudo registrar la solicitud." },
         500
+      );
+    }
+
+    // Notificación al administrador después de guardar la reservación.
+    // Un error de correo no debe impedir que la solicitud se registre.
+    if (process.env.RESEND_API_KEY) {
+      try {
+        const resend = new Resend(process.env.RESEND_API_KEY);
+
+        const escapeHtml = (value) =>
+          String(value ?? "").replace(/[&<>"']/g, (character) => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          })[character]);
+
+        const { error: emailError } = await resend.emails.send({
+          from: "Caritas RD <onboarding@resend.dev>",
+          to: ["k_suarez22@hotmail.com"],
+          subject: "🎨 Nueva solicitud de reservación - Caritas RD",
+          html: `
+            <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;padding:28px;background:#fff7fa;border-radius:16px;">
+              <h1 style="color:#ec1763;text-align:center;">🎨 Caritas RD</h1>
+              <h2 style="color:#0b2a4a;">¡Nueva solicitud de reservación!</h2>
+              <p>Se ha registrado una nueva solicitud en nuestra plataforma.</p>
+
+              <p><strong>Cliente:</strong> ${escapeHtml(fullName)}</p>
+              <p><strong>WhatsApp:</strong> ${escapeHtml(whatsapp)}</p>
+              <p><strong>Correo:</strong> ${escapeHtml(email || "No proporcionado")}</p>
+              <p><strong>Tipo de evento:</strong> ${escapeHtml(eventType)}</p>
+              <p><strong>Fecha:</strong> ${escapeHtml(eventDate)}</p>
+              <p><strong>Hora de inicio:</strong> ${escapeHtml(startTime)}</p>
+              <p><strong>Duración:</strong> ${duration} horas</p>
+              <p><strong>Servicios:</strong> ${escapeHtml(services.join(", "))}</p>
+              <p><strong>Cantidad de niños:</strong> ${escapeHtml(childrenCount ?? "No indicada")}</p>
+              <p><strong>Dirección:</strong> ${escapeHtml(address)}</p>
+              <p><strong>Temática:</strong> ${escapeHtml(form.theme || "No indicada")}</p>
+              <p><strong>Edad del cumpleañero:</strong> ${escapeHtml(birthdayAge ?? "No indicada")}</p>
+              <p><strong>Notas:</strong> ${escapeHtml(form.notes || "Sin observaciones")}</p>
+
+              <p style="margin-top:24px;">
+                <strong>Estado:</strong> Pendiente de revisión
+              </p>
+
+              <p style="text-align:center;margin-top:28px;">
+                <a href="https://caritasrd.netlify.app/admin/dashboard"
+                   style="background:#ec1763;color:white;padding:12px 22px;text-decoration:none;border-radius:8px;">
+                  Ver reservaciones
+                </a>
+              </p>
+
+              <p style="font-size:12px;color:#64748b;text-align:center;margin-top:28px;">
+                Notificación automática de Caritas RD.
+              </p>
+            </div>
+          `,
+        });
+
+        if (emailError) {
+          console.error(
+            "Resend no pudo enviar la notificación:",
+            emailError
+          );
+        }
+      } catch (emailError) {
+        console.error(
+          "Error al procesar la notificación:",
+          emailError
+        );
+      }
+    } else {
+      console.warn(
+        "Notificación omitida: RESEND_API_KEY no está configurada."
       );
     }
 
