@@ -1,0 +1,31 @@
+/* ==================================
+   CARITAS RD - FORMULARIO COTIZADOR
+================================== */
+
+.quotation-form {
+  color: #333333;
+}
+
+.quotation-form h2,
+.quotation-form h3,
+.quotation-form label,
+.quotation-form legend {
+  color: #333333;
+}
+
+.quotation-form p,
+.quotation-form small,
+.quotation-form span {
+  color: #555555;
+}
+
+.quotation-form input,
+.quotation-form select,
+.quotation-form textarea {
+  color: #333333;
+  background-color: #ffffff;
+}
+
+.quotation-form .reservation-form__summary strong {
+  color: #d81b60;
+}

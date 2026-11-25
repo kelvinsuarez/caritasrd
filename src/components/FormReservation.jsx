@@ -10,6 +10,7 @@ const initialForm = {
   duration: "2",
   services: [],
   childrenCount: "",
+  quotationDetails: null,
   address: "",
   theme: "",
   birthdayAge: "",
@@ -56,9 +57,28 @@ function getEndTime(startTime, duration) {
   ).padStart(2, "0")}`;
 }
 
-export default function FormReservation() {
+
+export default function FormReservation({ initialData = null }) {
+
+  const estimatedTotal = Number(
+    initialData?.quotationDetails?.estimatedTotal
+  );
+
+  const hasEstimatedTotal =
+    initialData?.quotationDetails?.estimatedTotal != null &&
+    Number.isFinite(estimatedTotal) &&
+    estimatedTotal > 0;
+
+
   const [step, setStep] = useState(1);
-  const [form, setForm] = useState(initialForm);
+
+  const [form, setForm] = useState(() => ({
+    ...initialForm,
+    ...(initialData || {}),
+    accepted: false,
+    photoAuthorization: "",
+  }));
+
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [availability, setAvailability] = useState(null);
@@ -218,10 +238,6 @@ export default function FormReservation() {
       ) {
         nextErrors.childrenCount = "Introduce una cantidad válida.";
       }
-      if (step === 3 && !form.photoAuthorization) {
-  nextErrors.photoAuthorization =
-    "Selecciona Sí o No para continuar.";
-}
     }
 
     if (step === 3) {
@@ -604,6 +620,28 @@ export default function FormReservation() {
             </p>
             <p><strong>Lugar:</strong> {form.address}</p>
           </div>
+
+
+          {hasEstimatedTotal && (
+            <div className="reservation-form__summary">
+              <h3>💖 Presupuesto estimado</h3>
+
+              <p>
+                <strong>Total estimado:</strong>{" "}
+                {estimatedTotal.toLocaleString("es-DO", {
+                  style: "currency",
+                  currency: "DOP",
+                  maximumFractionDigits: 0,
+                })}
+              </p>
+
+              <p>
+                Este importe es estimado y está sujeto a
+                confirmación por parte de Caritas RD.
+              </p>
+            </div>
+          )}
+
 
           <div className="reservation-form__row">
             <div className="reservation-form__field">

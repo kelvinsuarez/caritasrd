@@ -30,7 +30,7 @@ function MapClickHandler({ onSelect }) {
   return null;
 }
 
-export default function CoverageMap() {
+export default function CoverageMap({ onCoverageChange }) {
   const [coverage, setCoverage] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [result, setResult] = useState(null);
@@ -59,6 +59,14 @@ export default function CoverageMap() {
 
     setSelectedLocation(latlng);
     setResult(isCovered ? "inside" : "outside");
+
+    if (typeof onCoverageChange === "function") {
+      onCoverageChange({
+        status: isCovered ? "inside" : "outside",
+        latitude: latlng.lat,
+        longitude: latlng.lng,
+      });
+    }
   };
 
   return (

@@ -19,6 +19,16 @@ import '../index.css';
 function App() {
   const [reservationOpen, setReservationOpen] = useState(false);
   const [cotizationOpen, setCotizationOpen] = useState(false);
+  const [reservationInitialData, setReservationInitialData] = useState(null);
+
+
+const handleReserveFromQuotation = (quotationData) => {
+  setReservationInitialData(quotationData);
+  setCotizationOpen(false);
+  setReservationOpen(true);
+};
+
+
   
   const openReservation = () => {
     setReservationOpen(true);
@@ -112,21 +122,27 @@ function App() {
       <Footer />
 
       {/* MODAL PARA AGENDAR EVENTOS */}
+      
+      {/* MODAL PARA AGENDAR EVENTOS */}
       <EventModal
         isOpen={reservationOpen}
         onClose={closeReservation}
         title="¡Organicemos tu fiesta!"
         subtitle="Completa los detalles y prepararemos tu solicitud de reserva."
       >
-        <FormReservation />
+        <FormReservation initialData={reservationInitialData} />
       </EventModal>
 
-      {/* FORMULARIO DE COTIZACIONES EXISTENTE */}
-      {cotizationOpen && (
-        <FormCotization
-          closeCotization={closeCotization}
-        />
-      )}
+      {/* MODAL PARA COTIZAR EVENTOS */}
+      <EventModal
+        isOpen={cotizationOpen}
+        onClose={closeCotization}
+        title="¡Hagamos realidad tu celebración! 🎨💕"
+        subtitle="Personaliza tus servicios y descubre el presupuesto estimado de tu evento."
+      >
+        <FormCotization onReserve={handleReserveFromQuotation} />
+      </EventModal>
+
 
     </div>
   </div>

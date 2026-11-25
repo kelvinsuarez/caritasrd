@@ -1,6 +1,18 @@
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 
+import {
+  calculateServicePrice,
+  calculateTransportPrice,
+  calculateAdditionalHoursPrice,
+} from "../../shared/quotationPricing.js";
+
+
+import { readFile } from "node:fs/promises";
+
+import { validateCoverage } from "../../shared/coverageValidation.js";
+
+
 const allowedEventTypes = new Set([
   "Cumpleaños infantil",
   "Actividad escolar",
@@ -103,6 +115,222 @@ export default async function handler(request) {
         ? null
         : Number(form.birthdayAge);
 
+
+const hasQuotation = form.quotationDetails != null;
+
+let quotation = null;
+
+if (hasQuotation) {
+  const details = form.quotationDetails;
+
+  if (
+    typeof details !== "object" ||
+    Array.isArray(details) ||
+    details === null
+  ) {
+    return respond(
+      { error: "Los datos de la cotización no son válidos." },
+      400
+    );
+  }
+
+  const hairPartyGirls = Number(details.hairPartyGirls);
+  const glitterParticipants = Number(details.glitterParticipants);
+  const quotedChildren = Number(details.childrenCount);
+
+  const locationType = details.locationType;
+  const coverageStatus = details.coverageStatus;
+
+
+const province =
+  typeof details.province === "string"
+    ? details.province.trim()
+    : "";
+
+const municipality =
+  typeof details.municipality === "string"
+    ? details.municipality.trim()
+    : "";
+
+if (
+  locationType === "interior" &&
+  (
+    province.length < 2 ||
+    province.length > 100 ||
+    municipality.length < 2 ||
+    municipality.length > 100
+  )
+) {
+  return respond(
+    {
+      error:
+        "Indica una provincia y un municipio válidos para el evento.",
+    },
+    400
+  );
+}
+
+
+  const latitude = details.latitude;
+  const longitude = details.longitude;
+
+  const validCoordinates =
+    latitude !== null &&
+    latitude !== undefined &&
+    latitude !== "" &&
+    longitude !== null &&
+    longitude !== undefined &&
+    longitude !== "" &&
+    Number.isFinite(Number(latitude)) &&
+    Number.isFinite(Number(longitude)) &&
+    Number(latitude) >= -90 &&
+    Number(latitude) <= 90 &&
+    Number(longitude) >= -180 &&
+    Number(longitude) <= 180;
+
+  if (locationType === "santo_domingo" && !validCoordinates) {
+    return respond(
+      {
+        error:
+          "Selecciona una ubicación válida en el mapa para continuar.",
+      },
+      400
+    );
+  }
+
+  const validQuantity = (value) =>
+    Number.isSafeInteger(value) &&
+    value >= 1 &&
+    value <= 10000;
+
+  if (
+    (services.includes("Pintacaritas") &&
+      !validQuantity(quotedChildren)) ||
+    (services.includes("Hair Party") &&
+      !validQuantity(hairPartyGirls)) ||
+    (services.includes("Stand de glitter para adultos") &&
+      !validQuantity(glitterParticipants))
+  ) {
+    return respond(
+      { error: "Las cantidades de la cotización no son válidas." },
+      400
+    );
+  }
+
+  if (
+    !["santo_domingo", "interior"].includes(locationType)
+  ) {
+    return respond(
+      { error: "La ubicación de la cotización no es válida." },
+      400
+    );
+  }
+
+  
+  // Verificar la cobertura con el perímetro oficial del proyecto.
+  let verifiedCoverageStatus = null;
+
+  if (locationType === "santo_domingo") {
+    try {
+      const coverageFile = new URL(
+        "../../shared/coverage.geojson",
+        import.meta.url
+      );
+
+      const coverageText = await readFile(coverageFile, "utf8");
+      const coverageData = JSON.parse(coverageText);
+
+      verifiedCoverageStatus = validateCoverage(
+        coverageData,
+        details.latitude,
+        details.longitude
+      );
+    } catch (error) {
+      console.error("Error al verificar la cobertura:", error);
+
+      return respond(
+        {
+          error:
+            "No fue posible verificar la ubicación del evento. Inténtalo nuevamente.",
+        },
+        400
+      );
+    }
+
+    if (verifiedCoverageStatus === null) {
+      return respond(
+        {
+          error:
+            "Selecciona una ubicación válida en el mapa para continuar.",
+        },
+        400
+      );
+    }
+  }
+
+  const transportCost = calculateTransportPrice(
+    locationType,
+    verifiedCoverageStatus
+  );
+
+
+  if (transportCost === null) {
+    return respond(
+      { error: "No se pudo determinar el transporte." },
+      400
+    );
+  }
+
+  const servicePrices = {
+    pintacaritas: services.includes("Pintacaritas")
+      ? calculateServicePrice("Pintacaritas", quotedChildren)
+      : 0,
+
+    hairParty: services.includes("Hair Party")
+      ? calculateServicePrice("Hair Party", hairPartyGirls)
+      : 0,
+
+    glitter: services.includes("Stand de glitter para adultos")
+      ? calculateServicePrice(
+          "Stand de glitter para adultos",
+          glitterParticipants
+        )
+      : 0,
+  };
+
+  const additionalHoursCost =
+    calculateAdditionalHoursPrice(duration);
+
+  const quotedTotal =
+    servicePrices.pintacaritas +
+    servicePrices.hairParty +
+    servicePrices.glitter +
+    additionalHoursCost +
+    transportCost;
+
+  quotation = {
+    province: locationType === "interior" ? province : null,
+    municipality: locationType === "interior" ? municipality : null,
+    hairPartyGirls: services.includes("Hair Party")
+      ? hairPartyGirls
+      : null,
+    glitterParticipants: services.includes(
+      "Stand de glitter para adultos"
+    )
+      ? glitterParticipants
+      : null,
+    childrenCount: services.includes("Pintacaritas")
+      ? quotedChildren
+      : null,
+    locationType,
+    coverageStatus: verifiedCoverageStatus,
+    servicePrices,
+    additionalHoursCost,
+    transportCost,
+    quotedTotal,
+  };
+}
+
     if (
       !fullName ||
       !/^[+()\d\s-]{7,30}$/.test(whatsapp) ||
@@ -169,7 +397,15 @@ export default async function handler(request) {
         start_time: startTime,
         duration,
         services,
-        children_count: childrenCount,
+        children_count: quotation
+          ? quotation.childrenCount ?? null
+          : childrenCount,
+        hair_party_girls: quotation?.hairPartyGirls ?? null,
+        glitter_participants: quotation?.glitterParticipants ?? null,
+        quotation_details: quotation ?? null,
+        transport_cost: quotation?.transportCost ?? null,
+        quoted_total: quotation?.quotedTotal ?? null,
+        final_total: null,
         address,
         theme: cleanText(form.theme, 150) || null,
         birthday_age: birthdayAge,
