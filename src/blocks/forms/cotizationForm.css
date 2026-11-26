@@ -1,31 +1,745 @@
-/* ==================================
-   CARITAS RD - FORMULARIO COTIZADOR
-================================== */
+
+/* ========================================
+   CARITAS RD - FORMULARIO DE COTIZACIONES
+   ======================================== */
 
 .quotation-form {
-  color: #333333;
+  --quotation-pink: #ec1763;
+  --quotation-pink-dark: #cf1255;
+  --quotation-blue: #0b2a4a;
+  --quotation-soft-pink: #fff7fa;
+  --quotation-border: #f6dce7;
+  --quotation-muted: #64748b;
+
+  width: 100%;
+  min-width: 0;
+
+  font-family: "Poppins", sans-serif;
+  color: var(--quotation-blue);
 }
 
-.quotation-form h2,
-.quotation-form h3,
-.quotation-form label,
-.quotation-form legend {
-  color: #333333;
+.quotation-form,
+.quotation-form * {
+  box-sizing: border-box;
 }
 
-.quotation-form p,
-.quotation-form small,
-.quotation-form span {
-  color: #555555;
+/* ========================================
+   TITULOS Y TEXTOS
+   ======================================== */
+
+.quotation-form h2 {
+  margin: 0 0 14px;
+
+  font-family: "Party", sans-serif;
+  font-size: clamp(28px, 4vw, 36px);
+  line-height: 1.2;
+  text-align: center;
+
+  color: var(--quotation-pink);
 }
 
-.quotation-form input,
-.quotation-form select,
-.quotation-form textarea {
-  color: #333333;
-  background-color: #ffffff;
+.quotation-form h3 {
+  margin: 0 0 20px;
+
+  font-family: "Funny", cursive;
+  font-size: 25px;
+  line-height: 1.3;
+
+  color: var(--quotation-pink);
+}
+
+.quotation-form p {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.quotation-form small {
+  display: block;
+
+  font-size: 12px;
+  line-height: 1.7;
+
+  color: var(--quotation-muted);
+}
+
+/* ========================================
+   SECCIONES DEL FORMULARIO
+   ======================================== */
+
+.quotation-form__client,
+.quotation-form__event,
+.quotation-form__coverage,
+.quotation-form__interior {
+  min-width: 0;
+  margin-bottom: 26px;
+  padding: 24px;
+
+  border: 1px solid var(--quotation-border);
+  border-radius: 20px;
+
+  background: #ffffff;
+
+  box-shadow: 0 4px 18px rgba(236, 23, 99, 0.04);
+}
+
+.quotation-form__client {
+  background: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    #fff3f8 100%
+  );
+}
+
+.quotation-form__event {
+  background: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    #fff9e9 100%
+  );
+
+  border-color: #f5e6c8;
+}
+
+.quotation-form__coverage {
+  background: #f5f9ff;
+  border-color: #dce7f3;
+}
+
+.quotation-form__interior {
+  background: #f8faff;
+  border-color: #dce7f3;
+}
+
+.quotation-form__client .reservation-form__field:last-child,
+.quotation-form__event .reservation-form__field:last-child,
+.quotation-form__interior .reservation-form__field:last-child {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   CAMPOS DEL FORMULARIO
+   ======================================== */
+
+.quotation-form .reservation-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  min-width: 0;
+  margin-bottom: 22px;
+}
+
+.quotation-form .reservation-form__field label {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.6;
+
+  color: var(--quotation-blue);
+}
+
+.quotation-form .reservation-form__field input,
+.quotation-form .reservation-form__field select,
+.quotation-form .reservation-form__field textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 50px;
+
+  padding: 13px 15px;
+
+  border: 1.5px solid #e2e8f0;
+  border-radius: 13px;
+  outline: none;
+
+  background: #ffffff;
+  color: var(--quotation-blue);
+
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.quotation-form .reservation-form__field input::placeholder,
+.quotation-form .reservation-form__field textarea::placeholder {
+  color: #94a3b8;
+}
+
+.quotation-form .reservation-form__field input:hover:not(:disabled),
+.quotation-form .reservation-form__field select:hover:not(:disabled),
+.quotation-form .reservation-form__field textarea:hover:not(:disabled) {
+  border-color: #e9a8c0;
+}
+
+.quotation-form .reservation-form__field input:focus,
+.quotation-form .reservation-form__field select:focus,
+.quotation-form .reservation-form__field textarea:focus {
+  border-color: var(--quotation-pink);
+
+  box-shadow: 0 0 0 4px rgba(236, 23, 99, 0.08);
+}
+
+.quotation-form .reservation-form__field textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.quotation-form .reservation-form__field select {
+  cursor: pointer;
+}
+
+.quotation-form .reservation-form__field input:disabled,
+.quotation-form .reservation-form__field select:disabled,
+.quotation-form .reservation-form__field textarea:disabled {
+  background: #f8fafc;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   SELECCION DE SERVICIOS
+   ======================================== */
+
+.quotation-form .reservation-form__services {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  min-width: 0;
+  margin: 24px 0;
+  padding: 20px;
+
+  border: 1.5px solid var(--quotation-border);
+  border-radius: 18px;
+
+  background: var(--quotation-soft-pink);
+}
+
+.quotation-form .reservation-form__services legend {
+  padding: 0 8px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: var(--quotation-blue);
+}
+
+.quotation-form .reservation-form__services label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-height: 60px;
+  padding: 16px;
+
+  border: 1.5px solid #e9e2e7;
+  border-radius: 13px;
+
+  background: #ffffff;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.quotation-form .reservation-form__services label:hover {
+  border-color: var(--quotation-pink);
+  background: #fff9fc;
+}
+
+.quotation-form .reservation-form__services label:has(input:checked) {
+  border-color: var(--quotation-pink);
+  background: #fff0f5;
+
+  box-shadow: 0 3px 12px rgba(236, 23, 99, 0.08);
+}
+
+.quotation-form .reservation-form__services input {
+  width: 20px;
+  height: 20px;
+
+  margin: 0;
+  flex-shrink: 0;
+
+  accent-color: var(--quotation-pink);
+  cursor: pointer;
+}
+
+.quotation-form .reservation-form__services input:focus-visible {
+  outline: 2px solid var(--quotation-pink);
+  outline-offset: 3px;
+}
+
+.quotation-form .reservation-form__services label:has(input:checked) span {
+  color: var(--quotation-pink-dark);
+  font-weight: 600;
+}
+
+.quotation-form .reservation-form__services label:has(input:disabled) {
+  cursor: not-allowed;
+}
+
+/* ========================================
+   MAPA DE COBERTURA
+   ======================================== */
+
+.quotation-form__coverage {
+  max-width: 100%;
+}
+
+.quotation-form__coverage h3 {
+  margin-bottom: 10px;
+}
+
+.quotation-form__coverage > p {
+  margin: 0 0 20px;
+
+  font-size: 13px;
+  color: var(--quotation-muted);
+}
+
+.quotation-form__interior .reservation-form__notice {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   PRESUPUESTO ESTIMADO
+   ======================================== */
+
+.quotation-form .reservation-form__summary {
+  margin: 28px 0;
+  padding: 26px;
+
+  border: 1.5px solid #f4bfd3;
+  border-radius: 22px;
+
+  background: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    #fff0f5 100%
+  );
+
+  box-shadow: 0 6px 24px rgba(236, 23, 99, 0.07);
+}
+
+.quotation-form .reservation-form__summary h3 {
+  margin: 0 0 24px;
+
+  font-size: 27px;
+  text-align: center;
+
+  color: var(--quotation-pink);
+}
+
+.quotation-form .reservation-form__summary p {
+  margin: 0 0 12px;
+
+  font-size: 14px;
+  line-height: 1.7;
+
+  overflow-wrap: anywhere;
 }
 
 .quotation-form .reservation-form__summary strong {
-  color: #d81b60;
+  font-weight: 600;
+}
+
+.quotation-form .reservation-form__summary hr {
+  height: 1px;
+  margin: 18px 0;
+
+  border: none;
+  background: #f4d4e1;
+}
+
+/* Resaltar el total despues del ultimo separador */
+
+.quotation-form .reservation-form__summary hr:last-of-type + p {
+  padding: 20px 14px;
+  margin-bottom: 18px;
+
+  border-radius: 14px;
+
+  background: var(--quotation-pink);
+  color: #ffffff;
+
+  font-size: 23px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.quotation-form .reservation-form__summary hr:last-of-type + p strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.quotation-form .reservation-form__summary small {
+  margin-top: 16px;
+  text-align: center;
+}
+
+/* ========================================
+   ACEPTACION DE CONDICIONES
+   ======================================== */
+
+.quotation-form .reservation-form__acceptance {
+  margin: 24px 0;
+  padding: 20px;
+
+  border: 1.5px solid var(--quotation-border);
+  border-radius: 16px;
+
+  background: var(--quotation-soft-pink);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.quotation-form .reservation-form__acceptance label {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+
+  font-size: 13px;
+  line-height: 1.8;
+
+  color: var(--quotation-blue);
+  cursor: pointer;
+}
+
+.quotation-form .reservation-form__acceptance input {
+  width: 21px;
+  height: 21px;
+
+  margin: 2px 0 0;
+  flex-shrink: 0;
+
+  accent-color: var(--quotation-pink);
+  cursor: pointer;
+}
+
+.quotation-form .reservation-form__acceptance:has(input:checked) {
+  border-color: var(--quotation-pink);
+  background: #fff0f5;
+}
+
+.quotation-form .reservation-form__acceptance input:focus-visible {
+  outline: 2px solid var(--quotation-pink);
+  outline-offset: 3px;
+}
+
+.quotation-form .reservation-form__acceptance label:has(input:disabled) {
+  cursor: not-allowed;
+}
+
+/* ========================================
+   MENSAJES INFORMATIVOS
+   ======================================== */
+
+.quotation-form .reservation-form__notice {
+  margin: 16px 0 22px;
+  padding: 15px 17px;
+
+  border: 1px solid #f5e2ac;
+  border-left: 4px solid #efbd43;
+  border-radius: 12px;
+
+  background: #fff9e9;
+  color: var(--quotation-blue);
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ========================================
+   BOTONES DE ACCION
+   ======================================== */
+
+.quotation-form > .reservation-form__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 56px;
+
+  margin: 0 0 14px;
+  padding: 15px 22px;
+
+  border: 2px solid transparent;
+  border-radius: 16px;
+
+  background: var(--quotation-pink);
+  color: #ffffff;
+
+  font-family: "Funny", cursive;
+  font-size: 19px;
+  line-height: 1.4;
+  text-align: center;
+
+  box-shadow: 0 5px 16px rgba(236, 23, 99, 0.18);
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Boton principal */
+
+.quotation-form > .reservation-form__submit:hover:not(:disabled) {
+  background: var(--quotation-pink-dark);
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(236, 23, 99, 0.25);
+}
+
+/* Boton secundario: reservar evento */
+
+.quotation-form > .reservation-form__submit
++ .reservation-form__submit {
+  border: 2px solid var(--quotation-pink);
+
+  background: #ffffff;
+  color: var(--quotation-pink);
+
+  box-shadow: none;
+}
+
+.quotation-form > .reservation-form__submit
++ .reservation-form__submit:hover:not(:disabled) {
+  background: #fff0f5;
+  color: var(--quotation-pink-dark);
+
+  box-shadow: none;
+}
+
+/* Estado deshabilitado */
+
+.quotation-form > .reservation-form__submit:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.quotation-form > .reservation-form__submit:focus-visible {
+  outline: 3px solid var(--quotation-pink);
+  outline-offset: 4px;
+}
+
+/* ========================================
+   NOTA FINAL DEL FORMULARIO
+   ======================================== */
+
+.quotation-form > .reservation-form__notice:last-child {
+  margin: 18px 0 0;
+  padding: 10px 8px;
+
+  border: none;
+  background: transparent;
+
+  color: var(--quotation-muted);
+
+  font-size: 12px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* ========================================
+   MENSAJES DE ERROR
+   ======================================== */
+
+.quotation-form [role="alert"] {
+  padding: 16px;
+
+  border: 1px solid #fecaca;
+  border-left: 4px solid #dc2626;
+  border-radius: 12px;
+
+  background: #fff1f2;
+  color: #b91c1c;
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ========================================
+   CONFIRMACION DE COTIZACION
+   ======================================== */
+
+.quotation-form [role="status"] {
+  margin: 26px 0;
+  padding: 26px;
+
+  border: 1.5px solid #bbdfc8;
+  border-radius: 20px;
+
+  background: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    #f0fdf4 100%
+  );
+
+  box-shadow: 0 5px 20px rgba(21, 128, 61, 0.06);
+}
+
+.quotation-form [role="status"] h3 {
+  margin-bottom: 18px;
+
+  color: #15803d;
+
+  font-size: 26px;
+  text-align: center;
+}
+
+.quotation-form [role="status"] p {
+  font-size: 13px;
+  line-height: 1.8;
+
+  overflow-wrap: anywhere;
+}
+
+.quotation-form [role="status"] small {
+  margin-top: 18px;
+}
+
+/* ========================================
+   ADAPTACION A TABLETAS
+   ======================================== */
+
+@media (max-width: 750px) {
+  .quotation-form__client,
+  .quotation-form__event,
+  .quotation-form__coverage,
+  .quotation-form__interior {
+    padding: 20px;
+  }
+
+  .quotation-form .reservation-form__summary {
+    padding: 22px;
+  }
+}
+
+/* ========================================
+   ADAPTACION A DISPOSITIVOS MOVILES
+   ======================================== */
+
+@media (max-width: 480px) {
+  .quotation-form h2 {
+    font-size: 27px;
+  }
+
+  .quotation-form h3 {
+    font-size: 22px;
+  }
+
+  .quotation-form__client,
+  .quotation-form__event,
+  .quotation-form__coverage,
+  .quotation-form__interior {
+    margin-bottom: 20px;
+    padding: 16px;
+
+    border-radius: 16px;
+  }
+
+  .quotation-form .reservation-form__field {
+    margin-bottom: 18px;
+  }
+
+  .quotation-form .reservation-form__field input,
+  .quotation-form .reservation-form__field select,
+  .quotation-form .reservation-form__field textarea {
+    min-height: 48px;
+
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .quotation-form .reservation-form__services {
+    padding: 14px;
+  }
+
+  .quotation-form .reservation-form__services label {
+    min-height: 56px;
+    padding: 12px;
+
+    font-size: 13px;
+  }
+
+  .quotation-form .reservation-form__summary {
+    padding: 18px;
+    border-radius: 17px;
+  }
+
+  .quotation-form .reservation-form__summary h3 {
+    font-size: 23px;
+  }
+
+  .quotation-form .reservation-form__summary hr:last-of-type + p {
+    font-size: 21px;
+  }
+
+  .quotation-form .reservation-form__acceptance {
+    padding: 15px;
+  }
+
+  .quotation-form .reservation-form__acceptance label {
+    gap: 11px;
+    font-size: 12px;
+  }
+
+  .quotation-form > .reservation-form__submit {
+    min-height: 54px;
+    padding: 14px 12px;
+
+    font-size: 17px;
+  }
+
+  .quotation-form [role="status"] {
+    padding: 18px;
+  }
+
+  .quotation-form [role="status"] h3 {
+    font-size: 23px;
+  }
+}
+
+/* ========================================
+   ACCESIBILIDAD Y MOVIMIENTO REDUCIDO
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .quotation-form .reservation-form__field input,
+  .quotation-form .reservation-form__field select,
+  .quotation-form .reservation-form__field textarea,
+  .quotation-form .reservation-form__services label,
+  .quotation-form .reservation-form__acceptance,
+  .quotation-form > .reservation-form__submit {
+    transition: none;
+  }
+
+  .quotation-form > .reservation-form__submit:hover:not(:disabled) {
+    transform: none;
+  }
 }

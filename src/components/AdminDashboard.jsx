@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 import ReservationDetails from "./ReservationDetails";
 import AdminCalendar from "./AdminCalendar";
+import AdminQuotations from "./AdminQuotations";
 
 const summaryCards = [
   { label: "Total de solicitudes", key: "total", icon: "📋", className: "total" },
@@ -19,6 +20,7 @@ export default function AdminDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("todas");
   const [selectedReservation, setSelectedReservation] = useState(null);
+  const [showQuotations, setShowQuotations] = useState(false);
 
   const filteredReservations = reservations.filter((reservation) => {
     const matchesName = (reservation.full_name || "")
@@ -104,6 +106,7 @@ export default function AdminDashboard() {
     };
   }, [loadReservations]);
 
+
   async function handleLogout() {
     await supabase.auth.signOut();
     window.location.replace("/admin");
@@ -166,15 +169,26 @@ export default function AdminDashboard() {
   return (
     <>
     <main className="admin-dashboard">
-        <div style={{ margin: "16px 0" }}>
+        
+<div className="admin-dashboard__test-actions">
   <button
     type="button"
+    className="admin-dashboard__button admin-dashboard__button--email"
     onClick={handleTestEmail}
     disabled={testing}
   >
     {testing ? "Procesando..." : "📧 Enviar correo de prueba"}
   </button>
+
+  <button
+  type="button"
+  className="admin-dashboard__button admin-dashboard__button--quotations"
+  onClick={() => setShowQuotations(true)}
+>
+  📋 Gestionar cotizaciones
+</button>
 </div>
+
       <div className="admin-dashboard__container">
         <h1 className="admin-dashboard__title">
           🎨 Panel administrativo de Caritas_RD
@@ -202,11 +216,20 @@ export default function AdminDashboard() {
           >
             {testing ? "Actualizando..." : "Actualizar reservaciones"}
           </button>
-          {testResult && (
-            <p className="admin-dashboard__feedback" role="status">
-              {testResult}
-            </p>
-          )}
+          
+{testResult && (
+  <p
+    className={`admin-dashboard__feedback ${
+      testResult.startsWith("¡Consulta de cotizaciones exitosa!")
+        ? "admin-dashboard__feedback--quotations"
+        : ""
+    }`}
+    role="status"
+  >
+    {testResult}
+  </p>
+)}
+
         </div>
 
          <AdminCalendar
@@ -320,6 +343,11 @@ export default function AdminDashboard() {
         await loadReservations();
         setSelectedReservation(null);
     }}
+  />
+)}
+{showQuotations && (
+  <AdminQuotations
+    onClose={() => setShowQuotations(false)}
   />
 )}
   </>

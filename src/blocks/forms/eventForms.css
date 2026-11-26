@@ -470,3 +470,127 @@
   height: 17px;
   accent-color: #ec1763;
 }
+
+
+/* ========================================
+   CARITAS RD - FORMULARIO DE COTIZACIONES
+   ======================================== */
+
+.quotation-form {
+  --quotation-pink: #ec1763;
+  --quotation-blue: #0b2a4a;
+  --quotation-soft-pink: #fff7fa;
+  --quotation-border: #f6dce7;
+  --quotation-muted: #64748b;
+
+  width: 100%;
+  min-width: 0;
+
+  font-family: "Poppins", sans-serif;
+  color: var(--quotation-blue);
+}
+
+.quotation-form,
+.quotation-form * {
+  box-sizing: border-box;
+}
+
+/* Títulos principales */
+
+.quotation-form h2 {
+  margin: 0 0 12px;
+
+  font-family: "Party", sans-serif;
+  font-size: clamp(26px, 4vw, 34px);
+  line-height: 1.2;
+  text-align: center;
+
+  color: var(--quotation-pink);
+}
+
+/* Títulos de las secciones */
+
+.quotation-form h3 {
+  margin: 0 0 20px;
+
+  font-family: "Funny", cursive;
+  font-size: 24px;
+  line-height: 1.3;
+
+  color: var(--quotation-pink);
+}
+
+/* Textos descriptivos */
+
+.quotation-form p {
+  line-height: 1.7;
+}
+
+.quotation-form small {
+  display: block;
+
+  font-size: 12px;
+  line-height: 1.6;
+
+  color: var(--quotation-muted);
+}
+
+/* Contenedores de las secciones */
+
+.quotation-form__client,
+.quotation-form__event,
+.quotation-form__coverage,
+.quotation-form__interior {
+  min-width: 0;
+  margin-bottom: 24px;
+  padding: 24px;
+
+  background: #ffffff;
+  border: 1px solid var(--quotation-border);
+  border-radius: 20px;
+
+  box-shadow: 0 4px 16px rgba(236, 23, 99, 0.04);
+}
+
+.quotation-form__client {
+  background: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    #fff7fa 100%
+  );
+}
+
+.quotation-form__event {
+  background: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    #fffaf0 100%
+  );
+}
+
+.quotation-form__client .reservation-form__field:last-child,
+.quotation-form__event .reservation-form__field:last-child,
+.quotation-form__interior .reservation-form__field:last-child {
+  margin-bottom: 0;
+}
+
+/* Adaptación para dispositivos móviles */
+
+@media (max-width: 480px) {
+  .quotation-form h2 {
+    font-size: 26px;
+  }
+
+  .quotation-form h3 {
+    font-size: 21px;
+  }
+
+  .quotation-form__client,
+  .quotation-form__event,
+  .quotation-form__coverage,
+  .quotation-form__interior {
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 16px;
+  }
+}
